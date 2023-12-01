@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Navigation } from "@/components/ui/navigation"
 import clsx from "clsx";
+import Spline from '@splinetool/react-spline';
 
 export default function Home() {
   return (
@@ -25,15 +26,18 @@ function Logo() {
 function HomeMain() {
   return (
     <section className="px-10 pt-52 flex flex-col items-center gap-y-4">
-      <h1 className="text-6xl font-bold bg-clip-text bg-gradient-to-r text-transparent from-zinc-400 to-zinc-100">
+      <h1 className="text-6xl font-bold bg-clip-text bg-gradient-to-r text-transparent from-zinc-400 to-zinc-100 text-center">
         The all-in-one Web3 Dashboard
       </h1>
-      <p className="text-3xl">Re-imagine your Web3 experience</p>
+      <p className="text-3xl text-center">Re-imagine your Web3 experience, <br />just like building blocks</p>
       <div className="flex gap-x-2 mt-6">
         <Input placeholder="Email" />
         <Button>
-          Join now
+          Join Waitlist
         </Button>
+      </div>
+      <div className="mx-auto md:max-w-5xl">
+        <Spline scene="https://prod.spline.design/rYDE-3z85e5eQn-f/scene.splinecode" />
       </div>
     </section>
   );
