@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState, ReactNode, Dispatch, SetStateAction, RefObject } from "react"
+import { As, ComponentPropsWithAs } from "@/lib/types/component-props";
 
 type ActiveItem = {
   index: number,
@@ -31,26 +32,25 @@ type ChildrenProps = {
 const RootContext = createContext<RootContextType | undefined>(undefined)
 const ListContext = createContext<ListContextType | undefined>(undefined)
 
-type RootProps = {
+interface RootProps {
   duration?: number,
   vertical?: boolean,
   fluid?: boolean,
-  as?: any,
   children: (props: ChildrenProps) => ReactNode,
-  className?: string,
-  [key: string]: any,
 }
 
 
-export function Root({
+export function Root<Component extends As>({
   duration = 500,
   vertical = false,
   fluid = false,
-  as: Component = "div",
+  as,
   children,
   className,
   ...props
-}: RootProps) {
+}: ComponentPropsWithAs<Component, RootProps>) {
+  const Component = as ?? "div";
+
   const [isReady, setReady] = useState<boolean>(false)
   const [isMounted, setMounted] = useState<boolean>(false)
 
@@ -202,7 +202,7 @@ export function Item({ onActivated = () => { }, active = false, as: Component = 
   // once
   useEffect(() => {
     if (active) {
-      setActive(false);
+      setActive(true);
     }
 
     if (rootContext && listContext && index === listContext.peers.length - 1) {
