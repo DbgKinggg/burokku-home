@@ -1,7 +1,46 @@
-import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react"
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState, ReactNode, Dispatch, SetStateAction, RefObject } from "react"
 
-const RootContext = createContext()
-const ListContext = createContext()
+type ActiveItem = {
+  index: number,
+  size: number,
+  position: number,
+}
+
+type RootContextType = {
+  setActive: (index: number, size: number, position: number) => void,
+  activeItem: ActiveItem,
+  isReady: boolean,
+  setMounted: Dispatch<SetStateAction<boolean>>,
+  isMounted: boolean,
+  isFluid: boolean,
+  isVertical: boolean,
+  duration: number,
+}
+
+type ListContextType = {
+  peers: HTMLDivElement[],
+}
+
+type ChildrenProps = {
+  ready: boolean,
+  position: string,
+  duration: string,
+  size: string,
+}
+
+const RootContext = createContext<RootContextType | undefined>(undefined)
+const ListContext = createContext<ListContextType | undefined>(undefined)
+
+type RootProps = {
+  duration?: number,
+  vertical?: boolean,
+  fluid?: boolean,
+  as?: any,
+  children: (props: ChildrenProps) => ReactNode,
+  className?: string,
+  [key: string]: any,
+}
+
 
 export function Root({
   duration = 500,
@@ -11,22 +50,21 @@ export function Root({
   children,
   className,
   ...props
-}) {
-  const [isReady, setReady] = useState(false)
-  const [isMounted, setMounted] = useState(false)
+}: RootProps) {
+  const [isReady, setReady] = useState<boolean>(false)
+  const [isMounted, setMounted] = useState<boolean>(false)
 
-  const [activeItem, setActiveItem] = useState({
+  const [activeItem, setActiveItem] = useState<ActiveItem>({
     index: -1,
     size: 0,
     position: 0,
   })
 
-  // var previousSize = -1
-  const [previousSize, setPreviousSize] = useState(-1)
-  const [previousPosition, setPreviousPosition] = useState(0)
-  const [animated, setAnimated] = useState(true)
+  const [previousSize, setPreviousSize] = useState<number>(-1)
+  const [previousPosition, setPreviousPosition] = useState<number>(0)
+  const [animated, setAnimated] = useState<boolean>(true)
 
-  function handleFluidMove(targetSize, targetPosition) {
+  function handleFluidMove(targetSize: number, targetPosition: number) {
     if (!animated) {
       return
     }
@@ -75,7 +113,7 @@ export function Root({
     setPreviousPosition(targetPosition)
   }
 
-  function setActive(index, size, position) {
+  function setActive(index: number, size: number, position: number) {
     setActiveItem((currentState) => ({ ...currentState, index }))
 
     if (fluid) {
@@ -112,18 +150,24 @@ export function Root({
   )
 }
 
-export function List({ as: Component = "div", children, className, ...props }) {
-  const container = useRef(null)
+type ListProps = {
+  as?: any,
+  children: ReactNode,
+  className?: string,
+  [key: string]: any,
+}
+export function List({ as: Component = "div", children, className, ...props }: ListProps) {
+  const container = useRef<HTMLDivElement | null>(null)
 
-  const [childElements, setChildElements] = useState([])
+  const [childElements, setChildElements] = useState<HTMLDivElement[]>([])
 
   useEffect(() => {
     if (container.current) {
-      setChildElements(Array.from(container.current.children))
+      setChildElements(Array.from(container.current.children) as HTMLDivElement[])
     }
   }, [])
 
-  const context = { peers: childElements }
+  const context: ListContextType = { peers: childElements }
 
   return (
     <ListContext.Provider value={context}>
@@ -134,45 +178,54 @@ export function List({ as: Component = "div", children, className, ...props }) {
   )
 }
 
-export function Item({ onActivated = () => {}, active = false, as: Component = "div", children, className, ...props }) {
+type ItemProps = {
+  onActivated?: () => void,
+  active?: boolean,
+  as?: any,
+  children: (props: { setActive: any, isActive: boolean }) => ReactNode,
+  className?: string,
+  [key: string]: any,
+}
+
+export function Item({ onActivated = () => { }, active = false, as: Component = "div", children, className, ...props }: ItemProps) {
   const rootContext = useContext(RootContext)
   const listContext = useContext(ListContext)
 
-  const container = useRef(null)
+  const container = useRef<HTMLDivElement | null>(null)
 
   const index = useMemo(() => {
-    return listContext.peers ? listContext.peers.indexOf(container.current) : -1
-  }, [listContext.peers])
+    return listContext && listContext.peers ? listContext.peers.indexOf(container.current as HTMLDivElement) : -1
+  }, [listContext?.peers])
 
-  const isActive = useMemo(() => index == listContext.activeItem, [listContext.activeItem, index])
+  const isActive = useMemo(() => rootContext && listContext ? index === rootContext.activeItem.index : false, [rootContext?.activeItem, index])
 
   // once
   useEffect(() => {
     if (active) {
-      setActive(false)
+      setActive(false);
     }
 
-    if (index === listContext.peers.length - 1) {
-      rootContext.setMounted()
+    if (rootContext && listContext && index === listContext.peers.length - 1) {
+      rootContext.setMounted(true);
     }
-  }, [index])
+  }, [index]);
 
   useEffect(() => {
     // set first element as active
-    if (rootContext.activeItem.index === -1 && index === 0) {
-      setActive(false)
+    if (rootContext && rootContext.activeItem.index === -1 && index === 0) {
+      setActive(false);
     }
-  }, [rootContext.isMounted])
+  }, [rootContext?.isMounted]);
 
-  function setActive(event) {
-    if (rootContext.isVertical) {
-      rootContext.setActive(index, container.current.getBoundingClientRect().height, container.current.offsetTop)
-    } else {
-      rootContext.setActive(index, container.current.getBoundingClientRect().width, container.current.offsetLeft)
-    }
+  function setActive(event: boolean | Event) {
+    if (rootContext && event !== false && container.current) {
+      if (rootContext.isVertical) {
+        rootContext.setActive(index, container.current.getBoundingClientRect().height, container.current.offsetTop);
+      } else {
+        rootContext.setActive(index, container.current.getBoundingClientRect().width, container.current.offsetLeft);
+      }
 
-    if (event != false) {
-      setTimeout(() => onActivated(), rootContext.duration)
+      setTimeout(() => onActivated(), rootContext.duration);
     }
   }
 

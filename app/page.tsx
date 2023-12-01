@@ -29,9 +29,9 @@ function HomeMain() {
       <h1 className="text-6xl font-bold bg-clip-text bg-gradient-to-r text-transparent from-zinc-400 to-zinc-100 text-center">
         The all-in-one Web3 Dashboard
       </h1>
-      <p className="text-3xl text-center">Re-imagine your Web3 experience, <br />just like building blocks</p>
+      <p className="text-3xl text-center">Reimagine your Web3 experience, <br />just like building blocks</p>
       <div className="flex gap-x-2 mt-6">
-        <Input placeholder="Email" />
+        <Input placeholder="Email" type="email" />
         <Button>
           Join Waitlist
         </Button>
@@ -56,20 +56,23 @@ function NavigationMenu() {
             "--size": size,
             "--position": position,
             "--duration": duration,
-          }}>
+          } as React.CSSProperties}>
+          {/* blur highlight */}
           <div
             className={clsx(
               { hidden: !ready },
               "absolute bottom-0 h-1/2 w-[var(--size)] translate-x-[var(--position)] bg-white/75 blur-xl transition-[width,transform] duration-[--duration]",
             )}></div>
 
-          <div className="absolute inset-0 rounded-full bg-zinc-800"></div>
+          {/* main panel background */}
+          <div className="absolute inset-0 rounded-full bg-neutral-950/70 backdrop-blur-md"></div>
 
           <div className="relative">
+            {/* highlight background overlay */}
             <div
               className={clsx(
                 { hidden: !ready },
-                "absolute inset-y-0 h-full w-[var(--size)] translate-x-[var(--position)] rounded-full bg-white/10 transition-[width,transform] duration-[--duration]",
+                "absolute inset-y-0 h-full w-[var(--size)] translate-x-[var(--position)] rounded-full bg-white/5 transition-[width,transform] duration-[--duration]",
               )}></div>
             <div
               className={clsx(
@@ -85,7 +88,7 @@ function NavigationMenu() {
                       href="#"
                       className={clsx(
                         [isActive ? "text-white/75 text-shadow-sm" : "text-white/60 hover:text-white/75"],
-                        "inline-block px-4 py-1.5 text-sm font-light transition-[text-shadow,color] duration-300",
+                        "inline-block px-4 py-1.5 text-sm transition-[text-shadow,color] duration-300",
                       )}
                       onClick={setActive}>
                       {item}
