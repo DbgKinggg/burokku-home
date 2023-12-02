@@ -2,6 +2,26 @@ import DottedTitle from "@/components/home/shared/dotted-title";
 
 const functionalities = [
     {
+        title: "Modular Customization",
+        description: "Personalize your dashboard experience with our customizable widgets, enabling you to tailor the layout and content according to your needs.",
+        icon: ''
+    },
+    {
+        title: "Multi-chain Support",
+        description: "With support for more than 15 different chains, our platform ensures wide coverage of the blockchain universe.",
+        icon: ''
+    },
+    {
+        title: "Powerful Search Functionality",
+        description: "Easily search for a wallet profile, an NFT, a dApp, article, and more with our powerful search functionality.",
+        icon: ''
+    },
+    {
+        title: "Command Support",
+        description: "Built for the geeks and pros, our platform allows you to use your keyboard to navigate and use the dashboard.",
+        icon: ''
+    },
+    {
         title: "Wallet Activity Tracker",
         description: "Monitor your wallet activities across all chains in real-time with our intuitive tracking widget.",
         icon: ''
@@ -26,16 +46,11 @@ const functionalities = [
         description: "Explore your wallet activities in depth with our comprehensive filter options, offering you a detailed view of your transactions.",
         icon: ''
     },
-    {
-        title: "Modular Customization",
-        description: "Personalize your dashboard experience with our customizable widgets, enabling you to tailor the layout and content according to your needs.",
-        icon: ''
-    }
 ]
 
 function HomeFunctionality() {
     return (
-        <div className="min-h-screen flex flex-col mx-auto items-center max-w-5xl">
+        <div className="min-h-screen flex flex-col mx-auto pb-20 items-center max-w-5xl">
             <DottedTitle
                 title="Explore Your Web3 Universe"
             />
