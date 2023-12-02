@@ -1,15 +1,23 @@
 import Logo from "@/components/base/logo";
 import Navbar from "@/components/base/navbar";
-import HomeFunctionality from "@/components/home/functionality";
+import HomeInformationAggregator from "@/components/home/information-aggregator";
 import HomeHero from "@/components/home/hero";
+import HomeWidget from "@/components/home/widget";
+import HomeFunctionality from "@/components/home/functionality";
+import HomeFooterCTA from "@/components/home/footer-cta";
+import HomeFooter from "@/components/home/footer";
 
 export default function Home() {
   return (
-    <main>
+    <main className="">
       <Logo />
       <Navbar />
       <HomeHero />
+      <HomeInformationAggregator />
+      <HomeWidget />
       <HomeFunctionality />
+      <HomeFooterCTA />
+      <HomeFooter />
     </main>
   )
 }
