@@ -1,10 +1,10 @@
-import Block3D from "@/components/home/landing/3DBlock";
+import Block3D from "@/components/home/hero/3DBlock";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SpotlightButton from "@/components/ui/spotlight-button";
 import { Mail } from "lucide-react";
 
-function HomeLanding() {
+function HomeHero() {
     return (
         <section className="px-10 mt-24 md:pt-20 flex flex-col items-center gap-y-4 min-h-screen">
             <h1 className="text-5xl md:text-6xl font-bold bg-clip-text bg-gradient-to-r text-transparent from-zinc-400 to-zinc-100 text-center">
@@ -21,7 +21,7 @@ function HomeLanding() {
                     className="w-full md:w-80 pl-10"
                 />
             </div>
-            <SpotlightButton>
+            <SpotlightButton className="mt-3">
                 <span className="relative bg-gradient-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200 [font-variation-settings:'wdth'_100] group-hover:font-extrabold group-hover:[font-variation-settings:'wdth'_125]">
                     Join Waitlist
                 </span>
@@ -33,4 +33,4 @@ function HomeLanding() {
     );
 }
 
-export default HomeLanding;
+export default HomeHero;

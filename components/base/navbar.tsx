@@ -9,7 +9,7 @@ function Navbar() {
     const navigate = () => { };
 
     return (
-        <Navigation as="nav" className="rounded-full border border-white/10 bg-white/5 p-2 top-5 left-1/2 -translate-x-1/2 hidden md:block fixed">
+        <Navigation as="nav" className="rounded-full border border-white/10 bg-white/5 p-2 top-5 left-1/2 -translate-x-1/2 hidden md:block fixed z-50">
             {({ ready, size, position, duration }) => (
                 <div
                     style={{
