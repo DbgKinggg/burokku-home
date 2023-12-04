@@ -4,73 +4,66 @@ import { BrainCogIcon, CoinsIcon, GemIcon, RssIcon } from "lucide-react";
 
 function Sidebar() {
     return (
-        <aside className={"pb-12"}>
-            <div className="space-y-4 py-4">
-                <div className="px-3 py-2">
-                    <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-                        Web 2
-                    </h2>
-                    <div className="space-y-1">
-                        <Button variant="ghost" className="w-full justify-start droppable-element"
-                            draggable={true}
-                            unselectable="on"
-                            // this is a hack for firefox
-                            // Firefox requires some kind of initialization
-                            // which we can do by adding this attribute
-                            // @see https://bugzilla.mozilla.org/show_bug.cgi?id=568313
-                            onDragStart={e => {
-                                e.dataTransfer.setData("text/plain", "")
-
-                                // e.dataTransfer.setData('dragData', JSON.stringify({ widgetType: WidgetType.RSS_FEED }));
-                            }}
-                        >
-                            <RssIcon className="mr-2 h-4 w-4" />
-                            Rss Feed
-                        </Button>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <CoinsIcon className="mr-2 h-4 w-4" />
-                            Tokens
-                        </Button>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <BrainCogIcon className="mr-2 h-4 w-4" />
-                            Smart Feed
-                        </Button>
-                    </div>
-                </div>
-                <div className="px-3 py-2">
-                    <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-                        Web 3
-                    </h2>
-                    <div className="space-y-1">
-                        <Button variant="ghost" className="w-full justify-start">
-                            <RssIcon className="mr-2 h-4 w-4" />
-                            Swap
-                        </Button>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <CoinsIcon className="mr-2 h-4 w-4" />
-                            Transfer
-                        </Button>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <GemIcon className="mr-2 h-4 w-4" />
-                            Wallet NFT
-                        </Button>
-                        <Button variant="ghost" className="w-full justify-start"
-                            draggable={true}
-                            unselectable="on"
-                            onDragStart={e => {
-                                e.dataTransfer.setData("text/plain", "")
-
-                                // e.dataTransfer.setData('dragData', JSON.stringify({ widgetType: WidgetType.WALLET_ACTIVITY }));
-                            }}
-                        >
-                            <BrainCogIcon className="mr-2 h-4 w-4" />
-                            Wallet Activity
-                        </Button>
-                    </div>
-                </div>
+        <aside className={"py-2 overflow-y-auto px-4"}>
+            <div className="flex flex-col gap-y-3 items-center">
+                <DraggableButton
+                    name="Rss Feed"
+                    icon={<RssIcon className="h-4 w-4" />}
+                />
+                <DraggableButton
+                    name="Tokens"
+                    icon={<CoinsIcon className="h-4 w-4" />}
+                />
+                <DraggableButton
+                    name="Smart Feed"
+                    icon={<BrainCogIcon className="h-4 w-4" />}
+                />
+                <DraggableButton
+                    name="Swap"
+                    icon={<RssIcon className="h-4 w-4" />}
+                />
+                <DraggableButton
+                    name="Transfer"
+                    icon={<CoinsIcon className="h-4 w-4" />}
+                />
+                <DraggableButton
+                    name="Wallet NFT"
+                    icon={<GemIcon className="h-4 w-4" />}
+                />
+                <DraggableButton
+                    name="Wallet Activity"
+                    icon={<BrainCogIcon className="h-4 w-4" />}
+                />
             </div>
         </aside>
     );
+}
+
+type DraggableButtonProps = {
+    name: string;
+    icon: React.ReactNode;
+}
+
+function DraggableButton({ name, icon }: DraggableButtonProps) {
+    return (
+        <button
+            className="items-center justify-center flex flex-col gap-y-3 w-full droppable-element rounded-3xl border px-4 py-4 aspect-square shadow-lg"
+            draggable={true}
+            unselectable="on"
+            // this is a hack for firefox
+            // Firefox requires some kind of initialization
+            // which we can do by adding this attribute
+            // @see https://bugzilla.mozilla.org/show_bug.cgi?id=568313
+            onDragStart={e => {
+                e.dataTransfer.setData("text/plain", "")
+
+                // e.dataTransfer.setData('dragData', JSON.stringify({ widgetType: WidgetType.RSS_FEED }));
+            }}
+        >
+            <span className="">{icon}</span>
+            <span className="hidden md:flex">{name}</span>
+        </button>
+    )
 }
 
 export default Sidebar;
