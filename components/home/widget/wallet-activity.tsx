@@ -1,12 +1,10 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { networkImages } from "./constants";
 import { cn, truncateMiddle } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Network } from "./type";
-import { AnchorHTMLAttributes, MouseEventHandler } from "react";
 
 type Activity = {
     network: Network;

@@ -1,12 +1,13 @@
 "use client"
-import { Button } from "@/components/ui/button";
 import { BrainCogIcon, CoinsIcon, GemIcon, RssIcon } from "lucide-react";
 import { WidgetType } from "./constants";
+import { Button } from "@/components/ui/button";
 
 function Sidebar() {
     return (
-        <aside className={"py-2 overflow-y-auto px-4"}>
-            <div className="flex flex-col gap-y-3 items-center">
+        <aside className={"py-4 overflow-y-auto px-4"}>
+            <h3 className="hidden md:inline text-center md:text-xl font-bold">Widgets</h3>
+            <div className="flex flex-col gap-y-3 mt-4">
                 {/* <DraggableButton
                     name="Rss Feed"
                     icon={<RssIcon className="h-4 w-4" />}
@@ -55,8 +56,7 @@ type DraggableButtonProps = {
 
 function DraggableButton({ name, icon, type }: DraggableButtonProps) {
     return (
-        <button
-            className="items-center justify-center overflow-hidden flex flex-col gap-y-3 w-full droppable-element rounded-3xl border px-4 py-4 aspect-square shadow-lg"
+        <Button variant="ghost" className="justify-start"
             draggable={true}
             unselectable="on"
             // this is a hack for firefox
@@ -71,7 +71,7 @@ function DraggableButton({ name, icon, type }: DraggableButtonProps) {
         >
             <span className="">{icon}</span>
             <span className="hidden md:flex">{name}</span>
-        </button>
+        </Button>
     )
 }
 
