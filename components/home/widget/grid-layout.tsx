@@ -52,7 +52,7 @@ const defaultLayouts = {
             },
             {
                 "w": 2,
-                "h": 16,
+                "h": 17,
                 "x": 0,
                 "y": 17,
                 "i": "4",

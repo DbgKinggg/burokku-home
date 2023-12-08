@@ -8,19 +8,9 @@ function Sidebar() {
         <aside className={"py-4 overflow-y-auto px-4"}>
             <h3 className="hidden md:inline text-center md:text-xl font-bold">Widgets</h3>
             <div className="flex flex-col gap-y-3 mt-4">
-                {/* <DraggableButton
-                    name="Rss Feed"
-                    icon={<RssIcon className="h-4 w-4" />}
-                    type={WidgetType.TOKEN}
-                /> */}
                 <DraggableButton
                     name="Token"
                     icon={<CoinsIcon className="h-4 w-4" />}
-                    type={WidgetType.TOKEN}
-                />
-                <DraggableButton
-                    name="Smart Feed"
-                    icon={<BrainCogIcon className="h-4 w-4" />}
                     type={WidgetType.TOKEN}
                 />
                 <DraggableButton
@@ -39,7 +29,7 @@ function Sidebar() {
                     type={WidgetType.WALLET_ACTIVITY}
                 />
                 <div className="text-muted-foreground text-center">
-                    <span className="hidden md:inline">and more</span>...
+                    <span className="hidden md:inline">and a lot more</span>...
                 </div>
             </div>
         </aside>
