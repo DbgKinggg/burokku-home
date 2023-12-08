@@ -1,8 +1,12 @@
 "use client"
 
+import { Button } from "@/components/ui/button";
 import useSize from "@/lib/hooks/use-size";
+import { GripHorizontalIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
+import SampleUseSidebar from "./sample-use-sidebar";
+import Token from "./token";
 
 interface CustomReactGridLayouts extends ReactGridLayout.Layouts {
     xxs: ReactGridLayout.Layout[];
@@ -10,9 +14,52 @@ interface CustomReactGridLayouts extends ReactGridLayout.Layouts {
     lg: ReactGridLayout.Layout[];
 }
 
+enum WidgetType {
+    SAMPLE_USE_SIDE_BAR = "SAMPLE_USE_SIDE_BAR",
+    TOKEN = "TOKEN",
+};
+
 type Widget = {
     key: string;
+    type: WidgetType
 }
+
+type Layouts = {
+    layouts: CustomReactGridLayouts;
+    widgets: Widget[];
+};
+
+const widgetComponent: Record<WidgetType, React.ReactNode> = {
+    [WidgetType.SAMPLE_USE_SIDE_BAR]: <SampleUseSidebar />,
+    [WidgetType.TOKEN]: <Token />
+};
+
+const defaultLayouts = {
+    layouts: {
+        lg: [
+            { i: "1", x: 0, y: 0, w: 1, h: 10, minH: 5 },
+            { i: "2", x: 1, y: 1, w: 1, h: 10, minH: 5 },
+        ],
+        md: [
+            { i: "1", x: 0, y: 0, w: 1, h: 10, minH: 5 },
+            { i: "2", x: 1, y: 1, w: 1, h: 10, minH: 5 },
+        ],
+        xxs: [
+            { i: "1", x: 0, y: 0, w: 1, h: 5, minH: 5 },
+            { i: "2", x: 1, y: 1, w: 1, h: 5, minH: 5 },
+        ],
+    },
+    widgets: [
+        {
+            key: '1',
+            type: WidgetType.SAMPLE_USE_SIDE_BAR
+        },
+        {
+            key: '2',
+            type: WidgetType.TOKEN
+        }
+    ]
+};
 
 function GridLayout() {
     const { rect, ref } = useSize();
@@ -30,31 +77,7 @@ function GridLayout() {
 function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
     const width = rect ? rect.width : 1000;
     const gridLayoutRef = useRef<ResponsiveGridLayout>(null);
-    const [layouts, setLayouts] = useState<CustomReactGridLayouts>({
-        lg: [
-            { i: "1", x: 0, y: 0, w: 1, h: 19, minH: 5 },
-            { i: "2", x: 1, y: 1, w: 1, h: 19, minH: 5 },
-            { i: "3", x: 2, y: 2, w: 1, h: 19, minH: 5 },
-        ],
-        md: [
-            { i: "1", x: 0, y: 0, w: 1, h: 19, minH: 5 },
-            { i: "2", x: 1, y: 1, w: 1, h: 19, minH: 5 },
-            { i: "3", x: 2, y: 2, w: 1, h: 19, minH: 5 },
-        ],
-        xxs: [
-            { i: "1", x: 0, y: 0, w: 1, h: 5, minH: 5 },
-            { i: "2", x: 1, y: 1, w: 1, h: 5, minH: 5 },
-            { i: "3", x: 2, y: 2, w: 1, h: 5, minH: 5 },
-        ],
-    });
-    const [widgets, setWidgets] = useState<Widget[]>([
-        {
-            key: '1',
-        },
-        {
-            key: '2',
-        }
-    ]);
+    const [layouts, setLayouts] = useState<Layouts>(defaultLayouts);
 
     const onLayoutChange = (
         _currentLayout: ReactGridLayout.Layout[],
@@ -62,7 +85,10 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
     ) => {
         // existing bug from react-grid-layout, this is conflicting with the onDrop event
         setTimeout(() => {
-            setLayouts(allLayouts);
+            setLayouts({
+                ...layouts,
+                layouts: allLayouts
+            });
         }, 100);
     };
 
@@ -106,13 +132,19 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
         if (currentBreakpoint) {
             setLayouts({
                 ...layouts,
-                [currentBreakpoint]: newLayout
+                layouts: {
+                    ...layouts.layouts,
+                    [currentBreakpoint]: newLayout
+                }
             });
         } else {
             setLayouts({
-                xxs: newLayout,
-                md: newLayout,
-                lg: newLayout
+                ...layouts,
+                layouts: {
+                    xxs: newLayout,
+                    md: newLayout,
+                    lg: newLayout
+                }
             });
         }
     }
@@ -125,28 +157,30 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
         <ResponsiveGridLayout
             ref={gridLayoutRef}
             className="layout"
-            layouts={layouts}
+            layouts={layouts.layouts}
             breakpoints={{ lg: 996, md: 800, xxs: 0 }}
-            cols={{ lg: 3, md: 2, xxs: 1 }}
+            cols={{ lg: 2, md: 2, xxs: 1 }}
             rowHeight={30}
             width={width}
-        // onLayoutChange={onLayoutChange}
-        // onDrop={onDrop}
-        // Uncomment this when you want different placeholder for different event
-        // onDropDragOver={(event: DragOverEvent) => {
-        //     console.log(event);
-        //     return false;
-        // }}
-        // isDroppable={true}
-        // droppingItem={getDroppingItem()}
+            onLayoutChange={onLayoutChange}
+            onDrop={onDrop}
+            // Uncomment this when you want different placeholder for different event
+            // onDropDragOver={(event: DragOverEvent) => {
+            //     console.log(event);
+            //     return false;
+            // }}
+            isDroppable={true}
+            droppingItem={getDroppingItem()}
         // Too much unexpected behavior with this option enabled
         // compactType="horizontal"
         >
             {
-                widgets.map((widget) => (
-                    <div key={widget.key} className="h-full w-full border rounded-3xl">
-                        {widget.key}
-                    </div>
+                layouts.widgets.map((widget) => (
+                    widgetComponent[widget.type] && (
+                        <div key={widget.key}>
+                            {widgetComponent[widget.type]}
+                        </div>
+                    )
                 ))
             }
         </ResponsiveGridLayout>

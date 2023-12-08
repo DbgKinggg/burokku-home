@@ -47,7 +47,7 @@ type DraggableButtonProps = {
 function DraggableButton({ name, icon }: DraggableButtonProps) {
     return (
         <button
-            className="items-center justify-center flex flex-col gap-y-3 w-full droppable-element rounded-3xl border px-4 py-4 aspect-square shadow-lg"
+            className="items-center justify-center overflow-hidden flex flex-col gap-y-3 w-full droppable-element rounded-3xl border px-4 py-4 aspect-square shadow-lg"
             draggable={true}
             unselectable="on"
             // this is a hack for firefox

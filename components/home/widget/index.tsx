@@ -24,7 +24,7 @@ function HomeWidget() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
