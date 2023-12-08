@@ -10,10 +10,12 @@ import Token from "./token";
 import { WidgetType } from "./constants";
 import { CustomReactGridLayouts, Layouts, WidgetDragData } from "./type";
 import { generateHash } from "@/lib/utils";
+import WalletActivity from "./wallet-activity";
 
 const widgetComponent: Record<WidgetType, React.ReactNode> = {
     [WidgetType.SAMPLE_USE_SIDE_BAR]: <SampleUseSidebar />,
-    [WidgetType.TOKEN]: <Token />
+    [WidgetType.TOKEN]: <Token />,
+    [WidgetType.WALLET_ACTIVITY]: <WalletActivity />
 };
 
 const defaultLayouts = {
@@ -21,14 +23,17 @@ const defaultLayouts = {
         lg: [
             { i: "1", x: 0, y: 0, w: 1, h: 10, minH: 5 },
             { i: "2", x: 1, y: 1, w: 1, h: 10, minH: 5 },
+            { i: "3", x: 1, y: 1, w: 1, h: 10, minH: 5 },
         ],
         md: [
             { i: "1", x: 0, y: 0, w: 1, h: 10, minH: 5 },
             { i: "2", x: 1, y: 1, w: 1, h: 10, minH: 5 },
+            { i: "3", x: 1, y: 1, w: 1, h: 10, minH: 5 },
         ],
         xxs: [
             { i: "1", x: 0, y: 0, w: 1, h: 5, minH: 5 },
             { i: "2", x: 1, y: 1, w: 1, h: 5, minH: 5 },
+            { i: "3", x: 1, y: 1, w: 1, h: 10, minH: 5 },
         ],
     },
     widgets: [
@@ -39,6 +44,10 @@ const defaultLayouts = {
         {
             key: '2',
             type: WidgetType.TOKEN
+        },
+        {
+            key: '3',
+            type: WidgetType.WALLET_ACTIVITY,
         }
     ]
 };

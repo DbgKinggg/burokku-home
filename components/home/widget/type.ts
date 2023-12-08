@@ -20,4 +20,22 @@ type WidgetDragData = {
   widgetType: WidgetType;
 };
 
-export type {CustomReactGridLayouts, Layouts, Widget, WidgetDragData};
+type Network =
+  | "arbitrum_nova"
+  | "arbitrum_one"
+  | "arweave"
+  | "avalanche"
+  | "base"
+  | "binance_smart_chain"
+  | "crossbell"
+  | "ethereum"
+  | "farcaster"
+  | "gnosis"
+  | "optimism"
+  | "polygon"
+  | "scroll"
+  | "snapshot"
+  | "zksync_era"
+  | "zksync_lite";
+
+export type {CustomReactGridLayouts, Layouts, Widget, WidgetDragData, Network};

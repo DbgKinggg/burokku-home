@@ -7,11 +7,11 @@ function Sidebar() {
     return (
         <aside className={"py-2 overflow-y-auto px-4"}>
             <div className="flex flex-col gap-y-3 items-center">
-                <DraggableButton
+                {/* <DraggableButton
                     name="Rss Feed"
                     icon={<RssIcon className="h-4 w-4" />}
                     type={WidgetType.TOKEN}
-                />
+                /> */}
                 <DraggableButton
                     name="Tokens"
                     icon={<CoinsIcon className="h-4 w-4" />}
@@ -40,7 +40,7 @@ function Sidebar() {
                 <DraggableButton
                     name="Wallet Activity"
                     icon={<BrainCogIcon className="h-4 w-4" />}
-                    type={WidgetType.TOKEN}
+                    type={WidgetType.WALLET_ACTIVITY}
                 />
             </div>
         </aside>

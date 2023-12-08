@@ -12,4 +12,13 @@ function generateHash(prefix = "") {
   );
 }
 
-export {cn, generateHash};
+// function that will take in a string and truncate the middle part of it, the length of starting and ending part are pass in as props
+// e.g. "0x1234567890abcdef" => "0x1234...cdef"
+function truncateMiddle(str: string, start = 6, end = 6) {
+  if (str.length <= start + end) {
+    return str;
+  }
+  return str.slice(0, start) + "..." + str.slice(str.length - end);
+}
+
+export {cn, generateHash, truncateMiddle};
