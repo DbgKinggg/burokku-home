@@ -3,7 +3,6 @@ import {WidgetType} from "./constants";
 interface CustomReactGridLayouts extends ReactGridLayout.Layouts {
   xxs: ReactGridLayout.Layout[];
   md: ReactGridLayout.Layout[];
-  lg: ReactGridLayout.Layout[];
 }
 
 type Widget = {

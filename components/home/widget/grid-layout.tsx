@@ -12,31 +12,85 @@ import { CustomReactGridLayouts, Layouts, WidgetDragData } from "./type";
 import { generateHash } from "@/lib/utils";
 import WalletActivity from "./wallet-activity";
 import TokenSwap from "./token-swap";
+import WalletNFTs from "./wallet-nft";
 
 const widgetComponent: Record<WidgetType, React.ReactNode> = {
     [WidgetType.SAMPLE_USE_SIDE_BAR]: <SampleUseSidebar />,
     [WidgetType.TOKEN]: <Token />,
     [WidgetType.WALLET_ACTIVITY]: <WalletActivity />,
-    [WidgetType.TOKEN_SWAP]: <TokenSwap />
+    [WidgetType.TOKEN_SWAP]: <TokenSwap />,
+    [WidgetType.WALLET_NFT]: <WalletNFTs />
 };
+
 
 const defaultLayouts = {
     layouts: {
-        lg: [
-            { i: "1", x: 0, y: 0, w: 1, h: 10, minH: 5 },
-            { i: "2", x: 1, y: 1, w: 1, h: 10, minH: 5 },
-            { i: "3", x: 1, y: 1, w: 1, h: 10, minH: 5 },
+        "md": [
+            {
+                "w": 1,
+                "h": 9,
+                "x": 0,
+                "y": 0,
+                "i": "1",
+                "minH": 5,
+            },
+            {
+                "w": 1,
+                "h": 9,
+                "x": 1,
+                "y": 0,
+                "i": "2",
+                "minH": 5,
+            },
+            {
+                "w": 2,
+                "h": 8,
+                "x": 0,
+                "y": 9,
+                "i": "3",
+                "minH": 5,
+            },
+            {
+                "w": 2,
+                "h": 16,
+                "x": 0,
+                "y": 17,
+                "i": "4",
+            }
         ],
-        md: [
-            { i: "1", x: 0, y: 0, w: 1, h: 10, minH: 5 },
-            { i: "2", x: 1, y: 1, w: 1, h: 10, minH: 5 },
-            { i: "3", x: 1, y: 1, w: 1, h: 10, minH: 5 },
-        ],
-        xxs: [
-            { i: "1", x: 0, y: 0, w: 1, h: 5, minH: 5 },
-            { i: "2", x: 1, y: 1, w: 1, h: 5, minH: 5 },
-            { i: "3", x: 1, y: 1, w: 1, h: 10, minH: 5 },
-        ],
+        "xxs": [
+            {
+                "w": 1,
+                "h": 5,
+                "x": 0,
+                "y": 0,
+                "i": "1",
+                "minH": 5,
+            },
+            {
+                "w": 1,
+                "h": 8,
+                "x": 0,
+                "y": 5,
+                "i": "2",
+                "minH": 5,
+            },
+            {
+                "w": 1,
+                "h": 7,
+                "x": 0,
+                "y": 13,
+                "i": "3",
+                "minH": 5,
+            },
+            {
+                "w": 1,
+                "h": 15,
+                "x": 0,
+                "y": 20,
+                "i": "4",
+            }
+        ]
     },
     widgets: [
         {
@@ -50,6 +104,10 @@ const defaultLayouts = {
         {
             key: '3',
             type: WidgetType.WALLET_ACTIVITY,
+        },
+        {
+            key: '4',
+            type: WidgetType.WALLET_NFT,
         }
     ]
 };
@@ -150,7 +208,7 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
     }
 
     const getDroppingItem = () => {
-        return { i: 'new', w: 2, h: 5 };
+        return { i: 'new', w: 1, h: 5 };
     }
 
     return (
@@ -158,8 +216,8 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
             ref={gridLayoutRef}
             className="layout"
             layouts={layouts.layouts}
-            breakpoints={{ lg: 996, md: 800, xxs: 0 }}
-            cols={{ lg: 2, md: 2, xxs: 1 }}
+            breakpoints={{ md: 600, xxs: 0 }}
+            cols={{ md: 2, xxs: 1 }}
             rowHeight={30}
             width={width}
             onLayoutChange={onLayoutChange}
@@ -171,6 +229,7 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
             // }}
             isDroppable={true}
             droppingItem={getDroppingItem()}
+            draggableHandle=".drag-handle"
         // Too much unexpected behavior with this option enabled
         // compactType="horizontal"
         >

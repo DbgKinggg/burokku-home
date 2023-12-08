@@ -1,12 +1,15 @@
 import { Button } from "@/components/ui/button"
-import { BitcoinIcon, ChevronDownIcon, SettingsIcon } from "lucide-react";
+import { BitcoinIcon, ChevronDownIcon, GripHorizontalIcon, SettingsIcon } from "lucide-react";
 import Image from "next/image";
 
 function TokenSwap() {
     return (
-        <div className="h-full w-full border rounded-3xl flex px-3 py-3 md:px-6 md:py-6 flex-col gap-y-2 overflow-hidden">
+        <div className="h-full w-full border relative group rounded-3xl flex px-3 py-3 md:px-6 md:py-6 flex-col gap-y-2 overflow-hidden">
+            <Button variant={`ghost`} size={`icon`} className="absolute drag-handle group-hover:opacity-100 opacity-0 top-1 left-1/2 -translate-x-1/2 cursor-move">
+                <GripHorizontalIcon className="w-6 h-6 text-zinc-500 dark:text-zinc-400 m-3" />
+            </Button>
             <div className="flex justify-between items-center mb-4 text-lg md:text-2xl font-bold">
-                Swap
+                <h3>Swap</h3>
                 <SettingsIcon className="text-white" />
             </div>
             <div className="bg-secondary p-4 rounded-lg mb-4">

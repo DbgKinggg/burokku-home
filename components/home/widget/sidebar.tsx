@@ -1,5 +1,5 @@
 "use client"
-import { BrainCogIcon, CoinsIcon, GemIcon, RssIcon } from "lucide-react";
+import { ArrowLeftRight, BrainCogIcon, CandlestickChart, CoinsIcon, GemIcon, RssIcon } from "lucide-react";
 import { WidgetType } from "./constants";
 import { Button } from "@/components/ui/button";
 
@@ -14,7 +14,7 @@ function Sidebar() {
                     type={WidgetType.TOKEN}
                 /> */}
                 <DraggableButton
-                    name="Tokens"
+                    name="Token"
                     icon={<CoinsIcon className="h-4 w-4" />}
                     type={WidgetType.TOKEN}
                 />
@@ -25,19 +25,22 @@ function Sidebar() {
                 />
                 <DraggableButton
                     name="Swap"
-                    icon={<RssIcon className="h-4 w-4" />}
+                    icon={<ArrowLeftRight className="h-4 w-4" />}
                     type={WidgetType.TOKEN_SWAP}
                 />
                 <DraggableButton
-                    name="Wallet NFT"
+                    name="Wallet NFTs"
                     icon={<GemIcon className="h-4 w-4" />}
-                    type={WidgetType.TOKEN}
+                    type={WidgetType.WALLET_NFT}
                 />
                 <DraggableButton
-                    name="Wallet Activity"
-                    icon={<BrainCogIcon className="h-4 w-4" />}
+                    name="Wallet Activities"
+                    icon={<CandlestickChart className="h-4 w-4" />}
                     type={WidgetType.WALLET_ACTIVITY}
                 />
+                <div className="text-muted-foreground text-center">
+                    <span className="hidden md:inline">and more</span>...
+                </div>
             </div>
         </aside>
     );

@@ -16,7 +16,7 @@ function HomeWidget() {
                     <span className="w-3 h-3 rounded-full bg-green-400"></span>
                 </div>
                 <div className="bg-neutral-950 flex border border-t-0 w-full rounded-b-lg">
-                    <div className="max-w-xs border-r">
+                    <div className="max-w-xs border-r hidden md:flex">
                         <Sidebar />
                     </div>
                     <div className="flex-grow px-2 py-2">
