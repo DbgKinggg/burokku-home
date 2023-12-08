@@ -4,6 +4,7 @@ enum WidgetType {
   SAMPLE_USE_SIDE_BAR = "SAMPLE_USE_SIDE_BAR",
   TOKEN = "TOKEN",
   WALLET_ACTIVITY = "WALLET_ACTIVITY",
+  TOKEN_SWAP = "TOKEN_SWAP",
 }
 
 const networkImages: {[key in Network]?: string} = {

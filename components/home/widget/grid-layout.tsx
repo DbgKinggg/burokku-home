@@ -11,11 +11,13 @@ import { WidgetType } from "./constants";
 import { CustomReactGridLayouts, Layouts, WidgetDragData } from "./type";
 import { generateHash } from "@/lib/utils";
 import WalletActivity from "./wallet-activity";
+import TokenSwap from "./token-swap";
 
 const widgetComponent: Record<WidgetType, React.ReactNode> = {
     [WidgetType.SAMPLE_USE_SIDE_BAR]: <SampleUseSidebar />,
     [WidgetType.TOKEN]: <Token />,
-    [WidgetType.WALLET_ACTIVITY]: <WalletActivity />
+    [WidgetType.WALLET_ACTIVITY]: <WalletActivity />,
+    [WidgetType.TOKEN_SWAP]: <TokenSwap />
 };
 
 const defaultLayouts = {

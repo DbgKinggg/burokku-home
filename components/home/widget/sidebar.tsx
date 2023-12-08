@@ -26,12 +26,7 @@ function Sidebar() {
                 <DraggableButton
                     name="Swap"
                     icon={<RssIcon className="h-4 w-4" />}
-                    type={WidgetType.TOKEN}
-                />
-                <DraggableButton
-                    name="Transfer"
-                    icon={<CoinsIcon className="h-4 w-4" />}
-                    type={WidgetType.TOKEN}
+                    type={WidgetType.TOKEN_SWAP}
                 />
                 <DraggableButton
                     name="Wallet NFT"
@@ -69,7 +64,7 @@ function DraggableButton({ name, icon, type }: DraggableButtonProps) {
                 e.dataTransfer.setData('dragData', JSON.stringify({ widgetType: type }));
             }}
         >
-            <span className="">{icon}</span>
+            <span className="md:mr-2">{icon}</span>
             <span className="hidden md:flex">{name}</span>
         </Button>
     )
