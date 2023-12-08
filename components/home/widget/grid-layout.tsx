@@ -7,27 +7,9 @@ import { useRef, useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import SampleUseSidebar from "./sample-use-sidebar";
 import Token from "./token";
-
-interface CustomReactGridLayouts extends ReactGridLayout.Layouts {
-    xxs: ReactGridLayout.Layout[];
-    md: ReactGridLayout.Layout[];
-    lg: ReactGridLayout.Layout[];
-}
-
-enum WidgetType {
-    SAMPLE_USE_SIDE_BAR = "SAMPLE_USE_SIDE_BAR",
-    TOKEN = "TOKEN",
-};
-
-type Widget = {
-    key: string;
-    type: WidgetType
-}
-
-type Layouts = {
-    layouts: CustomReactGridLayouts;
-    widgets: Widget[];
-};
+import { WidgetType } from "./constants";
+import { CustomReactGridLayouts, Layouts, WidgetDragData } from "./type";
+import { generateHash } from "@/lib/utils";
 
 const widgetComponent: Record<WidgetType, React.ReactNode> = {
     [WidgetType.SAMPLE_USE_SIDE_BAR]: <SampleUseSidebar />,
@@ -106,32 +88,33 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
             return;
         }
 
-        // const dragData = JSON.parse(dragDataRaw) as WidgetDragData;
-        // const newKey = generateHash(dragData.widgetType);
+        const dragData = JSON.parse(dragDataRaw) as WidgetDragData;
+        const newKey = generateHash(dragData.widgetType);
         const lastLayoutItem = layout.pop();
         const newLayout: ReactGridLayout.Layout[] = [
             ...layout,
         ];
 
-        // // replace the new item's "i" key with the new key
-        // if (lastLayoutItem) {
-        //     newLayout.push({
-        //         ...lastLayoutItem,
-        //         i: newKey,
-        //     });
-        // }
-
-        // addWidget(
-        //     dragData.widgetType,
-        //     newKey
-        // )
+        // replace the new item's "i" key with the new key
+        if (lastLayoutItem) {
+            newLayout.push({
+                ...lastLayoutItem,
+                i: newKey,
+            });
+        }
 
         // get current breakpoint and update the layout
         //eslint-disable-next-line
         const currentBreakpoint = (gridLayoutRef.current?.state as any)?.breakpoint;
         if (currentBreakpoint) {
             setLayouts({
-                ...layouts,
+                widgets: [
+                    ...layouts.widgets,
+                    {
+                        key: newKey,
+                        type: dragData.widgetType
+                    }
+                ],
                 layouts: {
                     ...layouts.layouts,
                     [currentBreakpoint]: newLayout
@@ -139,7 +122,13 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
             });
         } else {
             setLayouts({
-                ...layouts,
+                widgets: [
+                    ...layouts.widgets,
+                    {
+                        key: newKey,
+                        type: dragData.widgetType
+                    }
+                ],
                 layouts: {
                     xxs: newLayout,
                     md: newLayout,

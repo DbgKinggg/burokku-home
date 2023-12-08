@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { BrainCogIcon, CoinsIcon, GemIcon, RssIcon } from "lucide-react";
+import { WidgetType } from "./constants";
 
 function Sidebar() {
     return (
@@ -9,30 +10,37 @@ function Sidebar() {
                 <DraggableButton
                     name="Rss Feed"
                     icon={<RssIcon className="h-4 w-4" />}
+                    type={WidgetType.TOKEN}
                 />
                 <DraggableButton
                     name="Tokens"
                     icon={<CoinsIcon className="h-4 w-4" />}
+                    type={WidgetType.TOKEN}
                 />
                 <DraggableButton
                     name="Smart Feed"
                     icon={<BrainCogIcon className="h-4 w-4" />}
+                    type={WidgetType.TOKEN}
                 />
                 <DraggableButton
                     name="Swap"
                     icon={<RssIcon className="h-4 w-4" />}
+                    type={WidgetType.TOKEN}
                 />
                 <DraggableButton
                     name="Transfer"
                     icon={<CoinsIcon className="h-4 w-4" />}
+                    type={WidgetType.TOKEN}
                 />
                 <DraggableButton
                     name="Wallet NFT"
                     icon={<GemIcon className="h-4 w-4" />}
+                    type={WidgetType.TOKEN}
                 />
                 <DraggableButton
                     name="Wallet Activity"
                     icon={<BrainCogIcon className="h-4 w-4" />}
+                    type={WidgetType.TOKEN}
                 />
             </div>
         </aside>
@@ -42,9 +50,10 @@ function Sidebar() {
 type DraggableButtonProps = {
     name: string;
     icon: React.ReactNode;
+    type: WidgetType;
 }
 
-function DraggableButton({ name, icon }: DraggableButtonProps) {
+function DraggableButton({ name, icon, type }: DraggableButtonProps) {
     return (
         <button
             className="items-center justify-center overflow-hidden flex flex-col gap-y-3 w-full droppable-element rounded-3xl border px-4 py-4 aspect-square shadow-lg"
@@ -57,7 +66,7 @@ function DraggableButton({ name, icon }: DraggableButtonProps) {
             onDragStart={e => {
                 e.dataTransfer.setData("text/plain", "")
 
-                // e.dataTransfer.setData('dragData', JSON.stringify({ widgetType: WidgetType.RSS_FEED }));
+                e.dataTransfer.setData('dragData', JSON.stringify({ widgetType: type }));
             }}
         >
             <span className="">{icon}</span>
