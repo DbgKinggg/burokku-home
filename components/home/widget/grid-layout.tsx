@@ -28,34 +28,52 @@ const defaultLayouts = {
         "md": [
             {
                 "w": 1,
-                "h": 9,
+                "h": 5,
                 "x": 0,
-                "y": 0,
+                "y": 9,
                 "i": "1",
                 "minH": 5,
+                "moved": false,
+                "static": false
             },
             {
                 "w": 1,
                 "h": 9,
-                "x": 1,
+                "x": 0,
                 "y": 0,
                 "i": "2",
                 "minH": 5,
+                "moved": false,
+                "static": false
             },
             {
                 "w": 2,
                 "h": 8,
                 "x": 0,
-                "y": 9,
+                "y": 14,
                 "i": "3",
                 "minH": 5,
+                "moved": false,
+                "static": false
             },
             {
                 "w": 2,
                 "h": 17,
                 "x": 0,
-                "y": 17,
+                "y": 22,
                 "i": "4",
+                "moved": false,
+                "static": false
+            },
+            {
+                "w": 1,
+                "h": 14,
+                "x": 1,
+                "y": 0,
+                "i": "5",
+                "moved": false,
+                "static": false,
+                "isDraggable": true
             }
         ],
         "xxs": [
@@ -66,6 +84,8 @@ const defaultLayouts = {
                 "y": 0,
                 "i": "1",
                 "minH": 5,
+                "moved": false,
+                "static": false
             },
             {
                 "w": 1,
@@ -74,6 +94,8 @@ const defaultLayouts = {
                 "y": 5,
                 "i": "2",
                 "minH": 5,
+                "moved": false,
+                "static": false
             },
             {
                 "w": 1,
@@ -82,6 +104,8 @@ const defaultLayouts = {
                 "y": 13,
                 "i": "3",
                 "minH": 5,
+                "moved": false,
+                "static": false
             },
             {
                 "w": 1,
@@ -89,6 +113,17 @@ const defaultLayouts = {
                 "x": 0,
                 "y": 20,
                 "i": "4",
+                "moved": false,
+                "static": false
+            },
+            {
+                "w": 1,
+                "h": 13,
+                "x": 0,
+                "y": 35,
+                "i": "5",
+                "moved": false,
+                "static": false
             }
         ]
     },
@@ -108,6 +143,10 @@ const defaultLayouts = {
         {
             key: '4',
             type: WidgetType.WALLET_NFT,
+        },
+        {
+            key: '5',
+            type: WidgetType.TOKEN_SWAP,
         }
     ]
 };

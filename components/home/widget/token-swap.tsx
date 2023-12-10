@@ -35,7 +35,7 @@ function TokenSwap() {
                     </div>
                 </div>
                 <div className="flex justify-between">
-                    <input className="bg-transparent text-white text-2xl outline-none" placeholder="0" />
+                    <input className="bg-transparent text-white text-2xl outline-none max-w-[150px]" placeholder="0" />
                     <Button
                         className="shadow-none ml-1"
                         variant="ghost"
@@ -57,7 +57,7 @@ function TokenSwap() {
                     <span className="text-gray-400">You receive</span>
                 </div>
                 <div className="flex justify-between items-center">
-                    <input className="bg-transparent text-white text-2xl outline-none w-full" placeholder="0" />
+                    <input className="bg-transparent text-white text-2xl outline-none w-full max-w-[150px]" placeholder="0" />
                     <Button className="px-4 py-2 rounded-lg" variant="secondary"
                         onClick={event => event.preventDefault()}
                         onMouseDown={event => event.stopPropagation()}
