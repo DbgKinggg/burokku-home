@@ -11,7 +11,7 @@ function HomeInformationAggregator() {
                 title="Information Aggregator"
                 description={`We make it easy for you to view all Web3 information, whether it is on-chain activities, token price, NFTs, news and so on, all things Web3.`}
             />
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-6 gap-y-3 px-4">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-6 gap-y-3 md:gap-y-5 px-4">
                 <BantoBox
                     title="On/Off chain Data"
                     description="Get real-time on-chain data with our app, providing instant insights into Token/NFT prices, wallet activities, and more."
@@ -20,10 +20,20 @@ function HomeInformationAggregator() {
                 <BantoBox
                     title="Search the way you like"
                     description="Delivering the latest off-chain data including news, articles, social media content, and trending topics."
-                    icon={<ArrowDownUp className="w-6 h-6" />}
+                    icon={<SearchIcon className="w-6 h-6" />}
                 >
                     <SearchCommand />
                 </BantoBox>
+                <BantoBox
+                    title="Smart Feed"
+                    description="Get real-time on-chain data with our app, providing instant insights into Token/NFT prices, wallet activities, and more."
+                    icon={<Link className="w-6 h-6" />}
+                ></BantoBox>
+                <BantoBox
+                    title="On/Off chain Data"
+                    description="Get real-time on-chain data with our app, providing instant insights into Token/NFT prices, wallet activities, and more."
+                    icon={<Link className="w-6 h-6" />}
+                ></BantoBox>
             </div>
         </section>
     )
@@ -83,17 +93,13 @@ function BantoBox({
                 className="left-1/2 top-0 w-[150px] user-select-none center pointer-events-none absolute h-px max-w-full -translate-x-1/2 -translate-y-1/2"
                 style={{ "background": "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.0) 0%, rgba(143, 143, 143, 0.67) 50%, rgba(0, 0, 0, 0) 100%)" }}
             />
-            <div className="relative h-80 overflow-hidden"
-                style={{
-                    background: "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%, rgba(0,0,0,1) 100%)"
-                }}
-            >
-                <div className="absolute w-full translate-x-1/4 translate-y-[10%]">
+            <div className="relative h-72 overflow-hidden">
+                <div className="absolute w-full translate-x-1/4 translate-y-[5%]">
                     {children}
                 </div>
-                <div aria-hidden="true" className="absolute left-0 top-0 h-full w-full"
+                <div aria-hidden="true" className="absolute left-0 top-0 h-full w-full pointer-events-none"
                     style={{
-                        background: "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%, rgba(0,0,0,1) 100%)"
+                        background: "linear-gradient(0deg, rgba(10,10,10,1) 0%, rgba(10,10,10,0) 40%, rgba(10,10,10,0) 100%, rgba(10,10,10,1) 100%)"
                     }} />
             </div>
             <div className="p-4 flex flex-col gap-y-2">
