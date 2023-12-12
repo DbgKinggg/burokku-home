@@ -6,6 +6,7 @@ import Image from "next/image";
 import React from "react";
 import SmartFeed from "./smart-feed";
 import SearchCommand from "./search-command";
+import OnOffChainData from "./on-off-chain-data";
 
 function HomeInformationAggregator() {
     return (
@@ -19,7 +20,9 @@ function HomeInformationAggregator() {
                     title="On/Off chain Data"
                     description="Get real-time on-chain data with our app, providing instant insights into Token/NFT prices, wallet activities, and more."
                     icon={<Link className="w-6 h-6" />}
-                ></BantoBox>
+                >
+                    <OnOffChainData />
+                </BantoBox>
                 <BantoBox
                     title="Search the way you like"
                     description="Delivering the latest off-chain data including news, articles, social media content, and trending topics."

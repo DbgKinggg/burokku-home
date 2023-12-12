@@ -186,7 +186,7 @@ function RssFeedItem({
                     className="rounded-md w-8 h-8 md:w-12 md:h-12 aspect-square object-cover"
                     src={thumbnailSrc}
                 />
-                <p className="md:text-lg font-semibold">
+                <p className="md:text-lg font-semibold text-left">
                     {description}
                 </p>
             </div>
@@ -224,7 +224,7 @@ function OnChainFeedItem({ network, time, content }: OnChainFeedItemProps) {
                     {time}
                 </span>
             </div>
-            <div className="break-all mt-3">
+            <div className="break-all mt-3 text-left">
                 {content}
             </div>
         </div>
