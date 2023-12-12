@@ -109,18 +109,20 @@ function SmartFeed() {
     }, 5000)
 
     return (
-        <motion.div className="w-full h-44 px-4 py-5 flex flex-col gap-y-2"
-            layout
-        >
+        <motion.div className="w-full h-44 px-4 py-5 flex flex-col gap-y-2">
             <AnimatePresence>
                 {
                     smartFeedItems.map((item, index) => (
                         <motion.div
                             key={item.id}
                             className="w-full h-full"
-                            initial={{ x: -200, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
+                            initial={{ y: -100, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
                             exit={{ opacity: 0 }}
+                            transition={{
+                                type: 'keyframes',
+                            }}
+                            layout
                         >
                             {
                                 item.type === 'on-chain-feed' ? (
