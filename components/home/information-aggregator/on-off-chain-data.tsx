@@ -51,7 +51,7 @@ function OnOffChainData() {
                     </Badge>
                 </motion.div>
             </div>
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 h-44 w-44 rounded-full bg-primary-foreground transition-all group-hover:scale-125 delay-100"></div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 h-52 w-52 rounded-full bg-primary-foreground transition-all group-hover:scale-125 delay-100"></div>
             <motion.div
                 className="absolute left-1/2 -translate-x-1/2 top-1/2 translate-y-full"
                 variants={kazuLabel}

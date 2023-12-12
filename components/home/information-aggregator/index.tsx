@@ -17,15 +17,15 @@ function HomeInformationAggregator() {
             />
             <div className="w-full grid grid-cols-1 md:grid-cols-2 md:gap-x-6 gap-y-3 md:gap-y-5 px-4">
                 <BantoBox
-                    title="On/Off chain Data"
-                    description="Get real-time on-chain data with our app, providing instant insights into Token/NFT prices, wallet activities, and more."
+                    title="Chain Data Interplay"
+                    description="Experience seamless integration of real-time on-chain and off-chain data. We provide immediate insights into Token/NFT prices, wallet activities, and more."
                     icon={<Link className="w-6 h-6" />}
                 >
                     <OnOffChainData />
                 </BantoBox>
                 <BantoBox
                     title="Search the way you like"
-                    description="Delivering the latest off-chain data including news, articles, social media content, and trending topics."
+                    description="Enjoy the power of our advanced search functionality. Easily find the latest on/off-chain data including wallet activities, NFTs, dApps, news articles, social media content, and trending topics."
                     icon={<SearchIcon className="w-6 h-6" />}
                 >
                     <div className="absolute w-full translate-x-1/4 translate-y-[5%]">
@@ -34,14 +34,14 @@ function HomeInformationAggregator() {
                 </BantoBox>
                 <BantoBox
                     title="Smart Feed"
-                    description="Get real-time on-chain data with our app, providing instant insights into Token/NFT prices, wallet activities, and more."
+                    description="We intelligently curates a feed based on your preferences, delivering only the information that matters to you."
                     icon={<RssIcon className="w-6 h-6" />}
                 >
                     <SmartFeed />
                 </BantoBox>
                 <BantoBox
                     title="All the things you love"
-                    description="Get access to a big list of blockchains and platforms you love."
+                    description="Gain access to a broad selection of blockchains and platforms you love, all in one place."
                     icon={<LayoutGridIcon className="w-6 h-6" />}
                 >
                     <Platforms />
