@@ -1,8 +1,10 @@
 import DottedTitle from "@/components/home/shared/dotted-title";
+import { Badge } from "@/components/ui/badge";
 import DotPattern from "@/components/ui/dot-pattern";
 import { ArrowDownUp, KeyRoundIcon, LayoutGridIcon, Link, NewspaperIcon, RssIcon, SearchIcon, SmileIcon, WalletCardsIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import SmartFeed from "./smart-feed";
 
 function HomeInformationAggregator() {
     return (
@@ -111,7 +113,7 @@ const platforms = [
 function Platforms() {
 
     return (
-        <div className="w-full h-full grid gap-x-3 gap-y-4 grid-cols-5 p-4 scale-125">
+        <div className="w-full h-full grid gap-x-3 gap-y-4 grid-cols-5 p-4 scale-125 overflow-hidden">
             {
                 platforms.map((platform, index) => (
                     <PlatformCard
@@ -132,7 +134,7 @@ type PlatformCardProps = {
 
 function PlatformCard({ name, iconSrc }: PlatformCardProps) {
     return (
-        <div className="w-16 h-16 relative border-t border-x rounded-2xl p-3 transition-all delay-100 hover:scale-105 hover:-translate-y-1" aria-label={name}>
+        <div className="w-14 h-14 md:w-16 md:h-16 relative border-t border-x rounded-2xl p-3 transition-all delay-100 hover:scale-105 hover:-translate-y-1" aria-label={name}>
             <div
                 aria-hidden="true"
                 className="left-1/2 top-0 w-[25px] user-select-none center pointer-events-none absolute h-px max-w-full -translate-x-1/2 -translate-y-1/2"
@@ -146,14 +148,6 @@ function PlatformCard({ name, iconSrc }: PlatformCardProps) {
                 sizes="100vw"
                 className="aspect-square w-full h-full rounded-full"
             />
-        </div>
-    );
-}
-
-function SmartFeed() {
-    return (
-        <div className="w-full h-44 border rounded-3xl px-4 py-4">
-            Smart Feed
         </div>
     );
 }
