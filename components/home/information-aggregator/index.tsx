@@ -1,7 +1,5 @@
 import DottedTitle from "@/components/home/shared/dotted-title";
-import { Badge } from "@/components/ui/badge";
-import DotPattern from "@/components/ui/dot-pattern";
-import { ArrowDownUp, KeyRoundIcon, LayoutGridIcon, Link, NewspaperIcon, RssIcon, SearchIcon, SmileIcon, WalletCardsIcon } from "lucide-react";
+import { LayoutGridIcon, Link, SearchIcon, SparkleIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import SmartFeed from "./smart-feed";
@@ -35,7 +33,7 @@ function HomeInformationAggregator() {
                 <BantoBox
                     title="Smart Feed"
                     description="We intelligently curates a feed based on your preferences, delivering only the information that matters to you."
-                    icon={<RssIcon className="w-6 h-6" />}
+                    icon={<SparkleIcon className="w-6 h-6" />}
                 >
                     <SmartFeed />
                 </BantoBox>
