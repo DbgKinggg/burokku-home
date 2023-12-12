@@ -5,6 +5,7 @@ import { ArrowDownUp, KeyRoundIcon, LayoutGridIcon, Link, NewspaperIcon, RssIcon
 import Image from "next/image";
 import React from "react";
 import SmartFeed from "./smart-feed";
+import SearchCommand from "./search-command";
 
 function HomeInformationAggregator() {
     return (
@@ -148,38 +149,6 @@ function PlatformCard({ name, iconSrc }: PlatformCardProps) {
                 sizes="100vw"
                 className="aspect-square w-full h-full rounded-full"
             />
-        </div>
-    );
-}
-
-function SearchCommand() {
-    return (
-        <div className="w-full max-w-xl h-72 rounded-2xl border px-1 py-1">
-            <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-                <SearchIcon className="w-6 h-6" />
-                <input className="flex ml-2 h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50" placeholder="Type a command or search..." autoComplete="off" autoCorrect="off" spellCheck="false" type="text" />
-            </div>
-            <div className="px-2 py-2 mt-2">
-                <div className="text-muted-foreground text-sm ml-2">Suggestions</div>
-                <div className="flex flex-col gap-y-1">
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
-                        <WalletCardsIcon className="w-4 h-4 mr-2" />
-                        <span>Wallet</span>
-                    </div>
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
-                        <SmileIcon className="mr-2 h-4 w-4" />
-                        <span>NFT</span>
-                    </div>
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
-                        <KeyRoundIcon className="mr-2 h-4 w-4" />
-                        <span>dApp</span>
-                    </div>
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
-                        <NewspaperIcon className="mr-2 h-4 w-4" />
-                        <span>News/Article</span>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 }
