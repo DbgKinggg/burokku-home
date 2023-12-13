@@ -3,10 +3,18 @@ import { ChevronDownIcon, SettingsIcon } from "lucide-react";
 import Image from "next/image";
 import DragHandle from "./drag-handle";
 
-function TokenSwap() {
+type TokenSwapProps = {
+    showMoveHandle?: boolean;
+}
+
+function TokenSwap({ showMoveHandle = true }: TokenSwapProps) {
     return (
         <div className="h-full w-full border relative group rounded-3xl flex px-3 py-3 md:px-6 md:py-6 flex-col gap-y-2 overflow-hidden">
-            <DragHandle />
+            {
+                showMoveHandle && (
+                    <DragHandle />
+                )
+            }
             <div className="flex justify-between items-center mb-4 text-lg md:text-2xl font-bold">
                 <h3>Swap</h3>
                 <SettingsIcon className="text-white" />

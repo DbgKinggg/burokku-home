@@ -37,7 +37,11 @@ const token = {
     icon: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579',
 };
 
-function Token() {
+type TokenProps = {
+    showMoveHandle?: boolean;
+};
+
+function Token({ showMoveHandle = true }: TokenProps) {
     const chartColorStart = token.change24h > 0 ? colors.green[500] : colors.red[500];
     const chartColorEnd = token.change24h > 0 ? colors.green[800] : colors.red[800];
 
@@ -45,7 +49,11 @@ function Token() {
         <div className="h-full w-full border rounded-3xl relative group flex px-3 py-3 md:px-6 md:py-6 flex-col gap-y-2 overflow-hidden"
             onContextMenu={(e) => e.preventDefault()}
         >
-            <DragHandle />
+            {
+                showMoveHandle && (
+                    <DragHandle />
+                )
+            }
             <div className="w-full flex flex-row justify-between">
                 <div className="text-3xl md:text-5xl font-bold">{token.name}</div>
                 <img

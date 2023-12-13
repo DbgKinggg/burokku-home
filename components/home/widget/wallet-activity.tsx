@@ -53,12 +53,20 @@ const activities: Activity[] = [
     }
 ];
 
-function WalletActivity() {
+type WalletActivityProps = {
+    showMoveHandle?: boolean;
+};
+
+function WalletActivity({ showMoveHandle = true }: WalletActivityProps) {
     return (
-        <div className="h-full w-full relative group border rounded-3xl flex px-3 py-3 md:px-6 md:py-6 flex-col gap-y-2 overflow-hidden"
+        <div className="h-full w-full relative group border rounded-3xl flex px-3 py-3 md:px-6 md:py-8 flex-col gap-y-2 overflow-hidden"
             onContextMenu={(e) => e.preventDefault()}
         >
-            <DragHandle />
+            {
+                showMoveHandle && (
+                    <DragHandle />
+                )
+            }
             <h3 className="text-xl md:text-2xl font-bold">
                 {`Wallet Activities`}
             </h3>

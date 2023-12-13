@@ -35,10 +35,18 @@ const sampleNfts: NFT[] = [
     },
 ];
 
-function WalletNFTs() {
+type WalletNFTsProps = {
+    showMoveHandle?: boolean;
+}
+
+function WalletNFTs({ showMoveHandle = true }: WalletNFTsProps) {
     return (
         <div className="h-full w-full relative group border rounded-3xl flex px-3 py-3 md:px-6 md:py-6 flex-col gap-y-2 overflow-hidden">
-            <DragHandle />
+            {
+                showMoveHandle && (
+                    <DragHandle />
+                )
+            }
             <div className="text-lg md:text-2xl font-bold">
                 Your NFTs
             </div>
