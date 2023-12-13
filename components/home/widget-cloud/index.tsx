@@ -1,5 +1,6 @@
 "use client"
 import DottedTitle from "../shared/dotted-title";
+import MultiToken from "../widget/multi-token";
 import Token from "../widget/token";
 import TokenSwap from "../widget/token-swap";
 import WalletActivity from "../widget/wallet-activity";
@@ -21,6 +22,9 @@ function HomeWidgetCloud() {
                 </div>
                 <div className="w-96 h-[500px] flex-shrink-0 -translate-x-14 -translate-y-10">
                     <TokenSwap showMoveHandle={false} />
+                </div>
+                <div className="w-96 h-[300px] flex-shrink-0 -translate-x-14 translate-y-28">
+                    <MultiToken showMoveHandle={false} />
                 </div>
                 <div className="w-[500px] flex-shrink-0 -translate-x-14 -translate-y-32">
                     <WalletNFTs showMoveHandle={false} />

@@ -31,10 +31,10 @@ const data = [
 
 const token = {
     name: 'BTC',
-    price: 60000,
-    priceFormatted: '$60,000',
+    price: 41323,
+    priceFormatted: '$41,323',
     change24h: -0.5,
-    icon: 'https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579',
+    icon: '/images/tokens/btc.png',
 };
 
 type TokenProps = {
@@ -44,6 +44,7 @@ type TokenProps = {
 function Token({ showMoveHandle = true }: TokenProps) {
     const chartColorStart = token.change24h > 0 ? colors.green[500] : colors.red[500];
     const chartColorEnd = token.change24h > 0 ? colors.green[800] : colors.red[800];
+    const id = token.name.toLowerCase() + '-chart';
 
     return (
         <div className="h-full w-full border rounded-3xl relative group flex px-3 py-3 md:px-6 md:py-6 flex-col gap-y-2 overflow-hidden"
@@ -75,12 +76,12 @@ function Token({ showMoveHandle = true }: TokenProps) {
                     }}
                 >
                     <defs>
-                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                        <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor={chartColorStart} stopOpacity={0.8} />
                             <stop offset="95%" stopColor={chartColorEnd} stopOpacity={0} />
                         </linearGradient>
                     </defs>
-                    <Area type="monotone" dataKey="value" stroke={chartColorStart} fillOpacity={1} fill="url(#colorUv)" />
+                    <Area type="monotone" dataKey="value" stroke={chartColorStart} fillOpacity={1} fill={`url(#${id})`} />
                 </AreaChart>
             </ResponsiveContainer>
             <div className="text-2xl md:text-5xl mt-auto">
