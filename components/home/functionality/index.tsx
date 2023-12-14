@@ -55,7 +55,7 @@ function HomeFunctionality() {
             <DottedTitle
                 title="Explore Your Web3 Universe"
             />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-3">
                 {
                     functionalities.map((functionality, index) => (
                         <div

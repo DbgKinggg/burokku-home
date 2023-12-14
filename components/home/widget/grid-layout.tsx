@@ -1,8 +1,5 @@
 "use client"
-
-import { Button } from "@/components/ui/button";
 import useSize from "@/lib/hooks/use-size";
-import { GripHorizontalIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { Responsive as ResponsiveGridLayout } from "react-grid-layout";
 import SampleUseSidebar from "./sample-use-sidebar";
@@ -13,13 +10,15 @@ import { generateHash } from "@/lib/utils";
 import WalletActivity from "./wallet-activity";
 import TokenSwap from "./token-swap";
 import WalletNFTs from "./wallet-nft";
+import SampleWidget from "./sample-widget";
 
 const widgetComponent: Record<WidgetType, React.ReactNode> = {
     [WidgetType.SAMPLE_USE_SIDE_BAR]: <SampleUseSidebar />,
     [WidgetType.TOKEN]: <Token />,
     [WidgetType.WALLET_ACTIVITY]: <WalletActivity />,
     [WidgetType.TOKEN_SWAP]: <TokenSwap />,
-    [WidgetType.WALLET_NFT]: <WalletNFTs />
+    [WidgetType.WALLET_NFT]: <WalletNFTs />,
+    [WidgetType.SAMPLE_WIDGET]: <SampleWidget />,
 };
 
 
@@ -30,7 +29,7 @@ const defaultLayouts = {
                 "w": 1,
                 "h": 5,
                 "x": 0,
-                "y": 9,
+                "y": 0,
                 "i": "1",
                 "minH": 5,
                 "moved": false,
@@ -38,39 +37,20 @@ const defaultLayouts = {
             },
             {
                 "w": 1,
-                "h": 9,
+                "h": 7,
                 "x": 0,
-                "y": 0,
+                "y": 5,
                 "i": "2",
                 "minH": 5,
                 "moved": false,
                 "static": false
             },
             {
-                "w": 2,
-                "h": 8,
-                "x": 0,
-                "y": 14,
-                "i": "3",
-                "minH": 5,
-                "moved": false,
-                "static": false
-            },
-            {
-                "w": 2,
-                "h": 17,
-                "x": 0,
-                "y": 22,
-                "i": "4",
-                "moved": false,
-                "static": false
-            },
-            {
                 "w": 1,
-                "h": 14,
+                "h": 12,
                 "x": 1,
                 "y": 0,
-                "i": "5",
+                "i": "3",
                 "moved": false,
                 "static": false,
                 "isDraggable": true
@@ -99,29 +79,10 @@ const defaultLayouts = {
             },
             {
                 "w": 1,
-                "h": 7,
-                "x": 0,
-                "y": 13,
-                "i": "3",
-                "minH": 5,
-                "moved": false,
-                "static": false
-            },
-            {
-                "w": 1,
-                "h": 15,
-                "x": 0,
-                "y": 20,
-                "i": "4",
-                "moved": false,
-                "static": false
-            },
-            {
-                "w": 1,
                 "h": 13,
                 "x": 0,
                 "y": 35,
-                "i": "5",
+                "i": "3",
                 "moved": false,
                 "static": false
             }
@@ -139,16 +100,9 @@ const defaultLayouts = {
         {
             key: '3',
             type: WidgetType.WALLET_ACTIVITY,
-        },
-        {
-            key: '4',
-            type: WidgetType.WALLET_NFT,
-        },
-        {
-            key: '5',
-            type: WidgetType.TOKEN_SWAP,
         }
     ]
+
 };
 
 function GridLayout() {
@@ -256,7 +210,7 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
             className="layout"
             layouts={layouts.layouts}
             breakpoints={{ md: 600, xxs: 0 }}
-            cols={{ md: 2, xxs: 1 }}
+            cols={{ md: 3, xxs: 1 }}
             rowHeight={30}
             width={width}
             onLayoutChange={onLayoutChange}

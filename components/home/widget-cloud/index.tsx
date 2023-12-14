@@ -1,4 +1,5 @@
 import DottedTitle from "../shared/dotted-title";
+import SampleWidget from "../widget";
 import WidgetsMain from "./widgets-main";
 
 function HomeWidgetCloud() {
@@ -12,6 +13,7 @@ function HomeWidgetCloud() {
             <div className="text-muted-foreground text-center font-semibold md:hidden">
                 And much more...
             </div>
+            <SampleWidget />
         </div>
     );
 }

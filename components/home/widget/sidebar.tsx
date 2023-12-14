@@ -1,5 +1,5 @@
 "use client"
-import { ArrowLeftRight, BrainCogIcon, CandlestickChart, CoinsIcon, GemIcon, RssIcon } from "lucide-react";
+import { ArrowLeftRight, BrainCogIcon, CandlestickChart, ChevronRightIcon, CoinsIcon, GemIcon, RssIcon, SmileIcon } from "lucide-react";
 import { WidgetType } from "./constants";
 import { Button } from "@/components/ui/button";
 
@@ -9,24 +9,9 @@ function Sidebar() {
             <h3 className="hidden md:inline text-center md:text-xl font-bold">Widgets</h3>
             <div className="flex flex-col gap-y-3 mt-4">
                 <DraggableButton
-                    name="Token"
-                    icon={<CoinsIcon className="h-4 w-4" />}
-                    type={WidgetType.TOKEN}
-                />
-                <DraggableButton
-                    name="Swap"
-                    icon={<ArrowLeftRight className="h-4 w-4" />}
-                    type={WidgetType.TOKEN_SWAP}
-                />
-                <DraggableButton
-                    name="Wallet NFTs"
-                    icon={<GemIcon className="h-4 w-4" />}
-                    type={WidgetType.WALLET_NFT}
-                />
-                <DraggableButton
-                    name="Wallet Activities"
-                    icon={<CandlestickChart className="h-4 w-4" />}
-                    type={WidgetType.WALLET_ACTIVITY}
+                    name="Drag me"
+                    icon={<SmileIcon className="h-4 w-4" />}
+                    type={WidgetType.SAMPLE_WIDGET}
                 />
                 <div className="text-muted-foreground text-center">
                     <span className="hidden md:inline">and a lot more</span>...
@@ -44,7 +29,7 @@ type DraggableButtonProps = {
 
 function DraggableButton({ name, icon, type }: DraggableButtonProps) {
     return (
-        <Button variant="ghost" className="justify-start"
+        <Button variant="ghost" className="justify-start group"
             draggable={true}
             unselectable="on"
             // this is a hack for firefox
@@ -59,6 +44,7 @@ function DraggableButton({ name, icon, type }: DraggableButtonProps) {
         >
             <span className="md:mr-2">{icon}</span>
             <span className="hidden md:flex">{name}</span>
+            <ChevronRightIcon className="h-4 w-4 ml-5 transition-all group-hover:translate-x-2" />
         </Button>
     )
 }
