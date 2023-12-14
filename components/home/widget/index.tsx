@@ -1,3 +1,4 @@
+"use client"
 import Sidebar from "./sidebar";
 import GridLayout from "./grid-layout";
 
@@ -13,7 +14,7 @@ function SampleWidget() {
                 <div className="max-w-xs border-r hidden md:flex">
                     <Sidebar />
                 </div>
-                <div className="hidden flex-grow md:flex px-2 py-2">
+                <div className="flex-grow px-2 py-2">
                     <GridLayout />
                 </div>
             </div>

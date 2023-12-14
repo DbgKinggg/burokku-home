@@ -1,3 +1,4 @@
+import { useBreakpoint } from "@/lib/hooks/use-breakpoint";
 import DottedTitle from "../shared/dotted-title";
 import SampleWidget from "../widget";
 import WidgetsMain from "./widgets-main";
@@ -13,7 +14,7 @@ function HomeWidgetCloud() {
             <div className="text-muted-foreground text-center font-semibold md:hidden">
                 And much more...
             </div>
-            <div className="max-w-5xl mx-auto">
+            <div className="hidden md:flex max-w-5xl mx-auto">
                 <SampleWidget />
             </div>
         </div>

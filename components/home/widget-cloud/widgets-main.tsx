@@ -12,11 +12,12 @@ function WidgetsMain() {
     const walletActivityRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll();
     const { isBelowLg } = useBreakpoint('lg');
+    const { isBelowSm } = useBreakpoint('sm');
 
     const opacity = useTransform(
         scrollYProgress,
-        isBelowLg ? [0, 0.2, 0.5, 0.6] : [0, 0.2, 0.55, 0.65],
-        isBelowLg ? [0, 0.5, 1, 0] : [0, 0.5, 1, 0]
+        isBelowSm ? [0, 0.2, 0.65, 0.75] : [0, 0.2, 0.6, 0.75],
+        isBelowSm ? [0, 0.5, 1, 0] : [0, 0.5, 1, 0]
     );
 
     const walletActivityY = useTransform(
