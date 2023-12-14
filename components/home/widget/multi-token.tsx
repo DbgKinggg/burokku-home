@@ -158,7 +158,7 @@ function TokenRow({ token }: TokenRowProps) {
             </div>
             <div className="text-lg md:text-xl font-medium">{token.name}</div>
             <div className="flex-grow h-10">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="80%" height="100%" className="mx-auto">
                     <AreaChart
                         width={200}
                         height={30}
