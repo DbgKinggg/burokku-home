@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
+import './custom-grid.css'
 import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { GeistSans } from 'geist/font/sans';

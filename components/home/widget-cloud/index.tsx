@@ -13,7 +13,9 @@ function HomeWidgetCloud() {
             <div className="text-muted-foreground text-center font-semibold md:hidden">
                 And much more...
             </div>
-            <SampleWidget />
+            <div className="max-w-5xl mx-auto">
+                <SampleWidget />
+            </div>
         </div>
     );
 }
