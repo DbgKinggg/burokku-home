@@ -5,6 +5,7 @@ import './custom-grid.css'
 import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { GeistSans } from 'geist/font/sans';
+import { Toaster } from 'sonner'
 
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster theme='dark' />
           {children}
         </ThemeProvider>
       </body>

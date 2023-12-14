@@ -1,3 +1,4 @@
+"use client"
 import { RocketIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import {
@@ -6,6 +7,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { toast } from "sonner";
 
 function LaunchBtn() {
     return (
@@ -14,9 +16,11 @@ function LaunchBtn() {
         >
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button className="fixed hidden md:flex right-5 top-5 disabled:pointer-events-auto"
+                    <Button className="opacity-50"
                         variant={`secondary`}
-                        disabled={true}
+                        onClick={() => {
+                            toast("📢 Coming soon!");
+                        }}
                     >
                         <RocketIcon className="w-5 h-5 mr-2" />
                         Launch App
