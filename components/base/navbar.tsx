@@ -2,8 +2,38 @@
 import { Navigation } from "@/components/ui/navigation"
 import clsx from "clsx";
 
+type MenuItemLink = {
+    name: string;
+    type: "link";
+    href: string;
+};
+
+type MenuItemButton = {
+    name: string;
+    type: "button";
+    onClick: () => void;
+};
+
+type MenuItem = MenuItemLink | MenuItemButton;
+
 function Navbar() {
-    const items = ["Home", "Community", "Docs", "Join Waitlist"]
+    const items: MenuItem[] = [
+        {
+            name: "Home",
+            type: "link",
+            href: "#"
+        },
+        {
+            name: "Blog",
+            type: "link",
+            href: "#"
+        },
+        {
+            name: "Changelog",
+            type: "link",
+            href: "#"
+        },
+    ]
 
     //TODO: finish navigate function
     const navigate = () => { };
@@ -49,15 +79,33 @@ function Navbar() {
                                     active={index === 0 ? true : false}
                                 >
                                     {({ setActive, isActive }) => (
-                                        <a
-                                            href="#"
-                                            className={clsx(
-                                                [isActive ? "text-white/75 text-shadow-sm" : "text-white/60 hover:text-white/75"],
-                                                "inline-block px-4 py-1.5 text-sm transition-[text-shadow,color] duration-300",
-                                            )}
-                                            onClick={setActive}>
-                                            {item}
-                                        </a>
+                                        item.type === "link"
+                                            ? (
+                                                <a
+                                                    href="#"
+                                                    className={clsx(
+                                                        [isActive ? "text-white/75 text-shadow-sm" : "text-white/60 hover:text-white/75"],
+                                                        "inline-block px-4 py-1.5 text-sm transition-[text-shadow,color] duration-300",
+                                                    )}
+                                                    onClick={setActive}>
+                                                    {item.name}
+                                                </a>
+                                            )
+                                            : (
+                                                <button
+                                                    className={clsx(
+                                                        [isActive ? "text-white/75 text-shadow-sm" : "text-white/60 hover:text-white/75"],
+                                                        "inline-block px-4 py-1.5 text-sm transition-[text-shadow,color] duration-300",
+                                                    )}
+                                                    onClick={() => {
+                                                        item.onClick();
+                                                        setActive();
+                                                    }}
+                                                    type="button"
+                                                >
+                                                    {item.name}
+                                                </button>
+                                            )
                                     )}
                                 </Navigation.Item>
                             ))}

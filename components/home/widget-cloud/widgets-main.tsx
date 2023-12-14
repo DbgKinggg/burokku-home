@@ -33,7 +33,7 @@ function WidgetsMain() {
     const nftY = useTransform(
         scrollYProgress,
         [0, 1],
-        isBelowLg ? [0, -100] : [300, -600]
+        isBelowLg ? [0, -100] : [300, -500]
     );
     const tokenSwapY = useTransform(
         scrollYProgress,
@@ -47,7 +47,7 @@ function WidgetsMain() {
     );
 
     return (
-        <div className="flex flex-wrap px-4 gap-y-8 lg:flex-nowrap gap-x-8 justify-center overflow-hidden pt-20 relative z-20"
+        <div className="flex flex-wrap px-4 gap-y-8 lg:flex-nowrap gap-x-8 justify-center overflow-hidden pt-32 relative z-20"
             ref={walletActivityRef}
         >
             <motion.div className="hidden md:flex w-full md:w-96 h-[500px] flex-shrink-0 -translate-x-14 -translate-y-10 relative z-10"

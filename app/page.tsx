@@ -6,6 +6,7 @@ import HomeFunctionality from "@/components/home/functionality";
 import HomeFooterCTA from "@/components/home/footer-cta";
 import HomeFooter from "@/components/home/footer";
 import HomeWidgetCloud from "@/components/home/widget-cloud";
+import { useRef } from "react";
 
 export default function Home() {
   return (

@@ -75,19 +75,19 @@ function SearchCommandPanel() {
             <div className="px-2 py-2 mt-2">
                 <div className="text-muted-foreground text-sm ml-2">Suggestions</div>
                 <div className="flex flex-col gap-y-1">
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
+                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                         <WalletCardsIcon className="w-4 h-4 mr-2" />
                         <span>Wallet</span>
                     </div>
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
+                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                         <SmileIcon className="mr-2 h-4 w-4" />
                         <span>NFT</span>
                     </div>
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
+                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                         <KeyRoundIcon className="mr-2 h-4 w-4" />
                         <span>dApp</span>
                     </div>
-                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50" aria-selected="false" data-selected="false">
+                    <div className="relative flex cursor-default select-none items-center rounded-sm px-2 py-3 text-sm outline-none hover:bg-accent data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                         <NewspaperIcon className="mr-2 h-4 w-4" />
                         <span>News/Article</span>
                     </div>

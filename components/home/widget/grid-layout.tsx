@@ -223,8 +223,8 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
             isDroppable={true}
             droppingItem={getDroppingItem()}
             draggableHandle=".drag-handle"
-            // Too much unexpected behavior with this option enabled
-            compactType="horizontal"
+        // Too much unexpected behavior with this option enabled
+        // compactType="horizontal"
         >
             {
                 layouts.widgets.map((widget) => (
