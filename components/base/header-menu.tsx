@@ -29,7 +29,7 @@ function HeaderMenu() {
             href: "#"
         },
         {
-            name: "Changelog",
+            name: "Docs",
             type: "link",
             href: "#"
         },

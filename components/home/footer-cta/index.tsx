@@ -8,7 +8,7 @@ function HomeFooterCTA() {
                     {`Can't wait to try it out?`}
                 </p>
                 <p className="text-4xl md:text-6xl mt-2">
-                    {`Let's join our waitlist and we will notify you when we launch!`}
+                    {`Join waitlist and we will notify you when we launch!`}
                 </p>
             </div>
             <div className="mt-12">
