@@ -15,7 +15,7 @@ function HomeHero() {
                 Reimaginate your Web3 experience, <br />just like building blocks
             </p>
             <JoinWaitlist />
-            <div className="mx-auto md:max-w-5xl">
+            <div className="mx-auto md:max-w-5xl mt-2">
                 <Block3D />
             </div>
         </section>

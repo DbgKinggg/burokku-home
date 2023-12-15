@@ -1,7 +1,7 @@
 "use client"
 import { MenuIcon, Rocket, RocketIcon, XIcon } from "lucide-react";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "./logo";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,11 @@ import { motion } from 'framer-motion'
 
 function MobileMenu() {
     const [showMenu, setShowMenu] = useState(false);
+    const [hideMenu, setHideMenu] = useState(true);
+
+    useEffect(() => {
+        setHideMenu(false)
+    }, []);
 
     const menuVariants = {
         open: { opacity: 1, y: 0, h: "100%" },
@@ -48,9 +53,13 @@ function MobileMenu() {
                     </Button>
                 </div>
             </div>
-            <motion.div className="flex flex-col w-full h-full px-6 py-4 md:hidden"
+            <motion.div className={cn(
+                "flex-col w-full h-full px-6 py-4 md:hidden",
+                hideMenu ? "hidden" : "flex"
+            )}
                 animate={showMenu ? "open" : "closed"}
                 variants={menuVariants}
+                initial="closed"
                 transition={{ type: 'spring', stiffness: 100, damping: 20 }}
             >
                 <div className="flex w-full flex-col">

@@ -51,6 +51,7 @@ const defaultLayouts = {
                 "x": 1,
                 "y": 0,
                 "i": "3",
+                "minH": 5,
                 "moved": false,
                 "static": false,
                 "isDraggable": true
@@ -83,6 +84,7 @@ const defaultLayouts = {
                 "x": 0,
                 "y": 35,
                 "i": "3",
+                "minH": 5,
                 "moved": false,
                 "static": false
             }
@@ -162,6 +164,7 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
             newLayout.push({
                 ...lastLayoutItem,
                 i: newKey,
+                minH: 5,
             });
         }
 
