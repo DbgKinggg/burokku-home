@@ -1,8 +1,15 @@
 "use client"
 import Sidebar from "./sidebar";
 import GridLayout from "./grid-layout";
+import { useBreakpoint } from "@/lib/hooks/use-breakpoint";
 
 function SampleWidget() {
+    const { isBelowSm } = useBreakpoint('sm');
+
+    if (isBelowSm) {
+        return null;
+    }
+
     return (
         <div className="mx-auto my-10 w-full px-3 md:px-5">
             <div className="w-full h-11 rounded-t-lg border bg-neutral-900 flex justify-start items-center space-x-1.5 px-3 shadow-lg">

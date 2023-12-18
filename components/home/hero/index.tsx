@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import SpotlightButton from "@/components/ui/spotlight-button";
 import { Mail } from "lucide-react";
 import JoinWaitlist from "../shared/join-waitlist";
+import ClientOnly from "@/components/base/client-only";
 
 function HomeHero() {
     return (
@@ -15,8 +16,10 @@ function HomeHero() {
                 Reimaginate your Web3 experience, <br />just like building blocks
             </p>
             <JoinWaitlist />
-            <div className="mx-auto md:max-w-5xl mt-2">
-                <Block3D />
+            <div className="mx-auto md:max-w-5xl mt-5 relative">
+                <ClientOnly>
+                    <Block3D />
+                </ClientOnly>
             </div>
         </section>
     );

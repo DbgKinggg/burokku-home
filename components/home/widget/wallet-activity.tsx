@@ -1,3 +1,4 @@
+
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
@@ -59,7 +60,7 @@ type WalletActivityProps = {
 
 function WalletActivity({ showMoveHandle = true }: WalletActivityProps) {
     return (
-        <div className="h-full w-full relative group border rounded-3xl flex px-3 py-3 md:px-6 md:py-8 flex-col gap-y-2 overflow-hidden"
+        <div className="h-full w-full relative group border rounded-3xl flex px-5 py-5 md:px-6 md:py-8 flex-col gap-y-2 overflow-hidden"
             onContextMenu={(e) => e.preventDefault()}
         >
             {
