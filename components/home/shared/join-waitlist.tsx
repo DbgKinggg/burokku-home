@@ -10,8 +10,10 @@ const appApi = new AppApi();
 
 function JoinWaitlist() {
     const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
 
     async function handleJoinWaitlist() {
+        setLoading(true);
         const result = await appApi.subscribeEmail(email);
 
         if (result.success) {
@@ -19,6 +21,7 @@ function JoinWaitlist() {
         } else {
             toast.error("Something went wrong due to: " + result.message);
         }
+        setLoading(false);
     }
 
     return (
@@ -38,6 +41,8 @@ function JoinWaitlist() {
             </div>
             <SpotlightButton className="mt-3"
                 onClick={handleJoinWaitlist}
+                loading={loading}
+                loadingText={<span className="relative bg-gradient-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200 [font-variation-settings:'wdth'_100] group-hover:font-extrabold group-hover:[font-variation-settings:'wdth'_125]">Joining...</span>}
             >
                 <span className="relative bg-gradient-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200 [font-variation-settings:'wdth'_100] group-hover:font-extrabold group-hover:[font-variation-settings:'wdth'_125]">
                     Join Waitlist
