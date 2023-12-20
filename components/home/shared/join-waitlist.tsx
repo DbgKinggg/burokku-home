@@ -19,7 +19,7 @@ function JoinWaitlist() {
         if (result.success) {
             toast.success("You have successfully joined the waitlist!");
         } else {
-            toast.error("Something went wrong due to: " + result.message);
+            toast.error(result.message ?? "Something went wrong");
         }
         setLoading(false);
     }

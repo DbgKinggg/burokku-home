@@ -1,6 +1,6 @@
 import { As, ComponentPropsWithAs } from "@/lib/types/component-props";
 import { cn } from "@/lib/utils";
-import { CircleIcon, MoreHorizontalIcon, RotateCwIcon } from "lucide-react";
+import { MoreHorizontalIcon } from "lucide-react";
 
 type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 type SpotlightButtonProps = ButtonElementProps & {
