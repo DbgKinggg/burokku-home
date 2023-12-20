@@ -6,7 +6,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { GeistSans } from 'geist/font/sans';
 import { Toaster } from 'sonner'
-
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: 'Kazu',
@@ -30,6 +30,7 @@ export default function RootLayout({
           <Toaster theme='dark' />
           {children}
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
