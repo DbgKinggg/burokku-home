@@ -10,7 +10,7 @@ class AppApi {
 
   constructor() {
     this.client = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_APP_API_BASE_URL,
+      baseURL: process.env.NEXT_PUBLIC_APP_API_BASE_URL + "/api",
     });
   }
 
