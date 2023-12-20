@@ -2,44 +2,61 @@
 import { Navigation } from "@/components/ui/navigation"
 import clsx from "clsx";
 import { motion } from 'framer-motion'
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type MenuItemLink = {
     name: string;
     type: "link";
     href: string;
+    newTab: boolean;
+    onActivated: () => void;
 };
 
 type MenuItemButton = {
     name: string;
     type: "button";
     onClick: () => void;
+    onActivated: () => void;
 };
 
 type MenuItem = MenuItemLink | MenuItemButton;
 
 const MotionNavigation = motion(Navigation);
+const openLink = (url: string, newTab: boolean = false) => {
+    window.open(url, newTab ? '_blank' : "_self")?.focus()
+};
 
 function HeaderMenu() {
+    const router = useRouter();
+
     const items: MenuItem[] = [
         {
             name: "Home",
             type: "link",
-            href: "#"
+            href: "/",
+            newTab: false,
+            onActivated: () => router.push("/"),
         },
         {
             name: "Blog",
             type: "link",
-            href: "#"
+            href: "#",
+            newTab: true,
+            onActivated: () => { },
         },
         {
             name: "Docs",
             type: "link",
-            href: "#"
+            newTab: true,
+            href: process.env.NEXT_PUBLIC_DOCS_URL ?? '#',
+            onActivated: () => {
+                if (!process.env.NEXT_PUBLIC_DOCS_URL) return;
+
+                openLink(process.env.NEXT_PUBLIC_DOCS_URL)
+            },
         },
     ]
-
-    //TODO: finish navigate function
-    const navigate = () => { };
 
     return (
         <motion.div
@@ -86,21 +103,27 @@ function HeaderMenu() {
                                     <Navigation.Item
                                         key={index}
                                         as="li"
-                                        onActivated={navigate}
+                                        onActivated={item.onActivated}
                                         active={index === 0 ? true : false}
                                     >
                                         {({ setActive, isActive }) => (
                                             item.type === "link"
                                                 ? (
-                                                    <a
-                                                        href="#"
+                                                    <Link
+                                                        href={item.href}
                                                         className={clsx(
                                                             [isActive ? "text-white/75 text-shadow-sm" : "text-white/60 hover:text-white/75"],
                                                             "inline-block px-4 py-1.5 text-sm transition-[text-shadow,color] duration-300",
                                                         )}
-                                                        onClick={setActive}>
+                                                        onClick={(e) => {
+                                                            // this will be navigated programmatically, so that we can see the animation finish
+                                                            e.preventDefault();
+                                                            setActive();
+                                                        }}
+                                                        target={item.newTab ? "_blank" : "_self"}
+                                                    >
                                                         {item.name}
-                                                    </a>
+                                                    </Link>
                                                 )
                                                 : (
                                                     <button

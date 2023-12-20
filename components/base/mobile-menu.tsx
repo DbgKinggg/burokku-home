@@ -71,7 +71,7 @@ function MobileMenu() {
                     </Link>
                     <Link
                         className="text-md block w-full border-b border-slate-6 py-4 font-semibold text-slate-11 transition duration-200 ease-in-out last:border-none hover:text-slate-12"
-                        href="/"
+                        href={process.env.DOCS_URL ?? '#'}
                     >
                         Docs
                     </Link>
