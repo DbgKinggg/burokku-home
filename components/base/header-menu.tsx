@@ -43,7 +43,11 @@ function HeaderMenu() {
             type: "link",
             href: "#",
             newTab: true,
-            onActivated: () => { },
+            onActivated: () => {
+                if (!process.env.NEXT_PUBLIC_BLOG_URL) return;
+
+                openLink(process.env.NEXT_PUBLIC_BLOG_URL)
+            },
         },
         {
             name: "Docs",
