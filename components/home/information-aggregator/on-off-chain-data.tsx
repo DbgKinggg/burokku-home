@@ -1,5 +1,6 @@
 "use client"
 import { Badge } from "@/components/ui/badge";
+import { APP_NAME } from "@/lib/constants";
 import { motion } from 'framer-motion'
 
 const MotionBadge = motion(Badge);
@@ -59,7 +60,7 @@ function OnOffChainData() {
             >
                 <Badge variant={`outline`}
                 >
-                    Kazu
+                    {APP_NAME}
                 </Badge>
             </motion.div>
         </motion.div>

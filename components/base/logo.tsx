@@ -1,7 +1,9 @@
+import { APP_NAME } from "@/lib/constants";
+
 function Logo() {
     return (
         <div className="font-bold text-xl z-50">
-            Kazu
+            {APP_NAME}
         </div>
     )
 }

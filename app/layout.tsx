@@ -9,10 +9,11 @@ import { Toaster } from 'sonner'
 import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/base/navbar'
 import HomeFooter from '@/components/home/footer'
+import { APP_NAME } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Kazu',
-  description: 'Kazu, the all-in-one Web3 dashboard.',
+  title: APP_NAME,
+  description: `${APP_NAME}, the all-in-one Web3 dashboard.`,
 }
 
 export default function RootLayout({

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { APP_NAME } from "@/lib/constants";
 
 const socials = [
     {
@@ -32,7 +33,7 @@ const links = [
 function HomeFooter() {
     return (
         <footer className="mt-auto flex flex-col-reverse gap-y-4 md:flex-row w-full py-4 px-8 md:justify-between text-muted-foreground">
-            <span>© 2024 Kazu</span>
+            <span>© 2024 {APP_NAME}</span>
             <div className="flex mt-6 md:mt-0 flex-col gap-y-4 md:flex-row gap-x-5">
                 {
                     socials.map((social, index) => (
