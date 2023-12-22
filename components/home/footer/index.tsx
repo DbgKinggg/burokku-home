@@ -12,7 +12,11 @@ const socials = [
 const links = [
     {
         name: 'Blog',
-        href: '#'
+        href: process.env.NEXT_PUBLIC_BLOG_URL ?? '#'
+    },
+    {
+        name: 'Docs',
+        href: process.env.NEXT_PUBLIC_DOCS_URL ?? '#'
     },
     {
         name: 'Privacy Policy',
@@ -20,13 +24,13 @@ const links = [
     },
     {
         name: 'Terms of Service',
-        href: '#'
+        href: '/terms-of-service'
     }
 ];
 
 function HomeFooter() {
     return (
-        <footer className="flex flex-col-reverse gap-y-4 md:flex-row w-full py-4 px-8 md:justify-between text-muted-foreground">
+        <footer className="mt-auto flex flex-col-reverse gap-y-4 md:flex-row w-full py-4 px-8 md:justify-between text-muted-foreground">
             <span>© 2024 Kazu</span>
             <div className="flex mt-6 md:mt-0 flex-col gap-y-4 md:flex-row gap-x-5">
                 {

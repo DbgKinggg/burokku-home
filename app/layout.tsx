@@ -7,6 +7,8 @@ import { ThemeProvider } from '@/components/providers/theme-provider'
 import { GeistSans } from 'geist/font/sans';
 import { Toaster } from 'sonner'
 import { Analytics } from '@vercel/analytics/react';
+import Navbar from '@/components/base/navbar'
+import HomeFooter from '@/components/home/footer'
 
 export const metadata: Metadata = {
   title: 'Kazu',
@@ -28,7 +30,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster theme='dark' />
-          {children}
+          <main className="min-h-screen flex flex-col">
+            <Navbar />
+            {children}
+            <HomeFooter />
+          </main>
         </ThemeProvider>
         <Analytics />
       </body>

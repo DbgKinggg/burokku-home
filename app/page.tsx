@@ -11,14 +11,12 @@ import Navbar from "@/components/base/navbar";
 
 export default function Home() {
   return (
-    <main className="">
-      <Navbar />
+    <>
       <HomeHero />
       <HomeInformationAggregator />
       <HomeWidgetCloud />
       <HomeFunctionality />
       <HomeFooterCTA />
-      <HomeFooter />
-    </main>
+    </>
   )
 }
