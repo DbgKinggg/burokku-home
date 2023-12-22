@@ -67,6 +67,7 @@ function HeaderMenu() {
             className="top-6 left-1/2 -translate-x-1/2 hidden md:block fixed z-50"
             initial={{ opacity: 0, y: '-100%', x: '-50%' }}
             animate={{ opacity: 1, y: 0, x: '-50%' }}
+            transition={{ delay: 1 }}
         >
             <Navigation
                 as="nav"
