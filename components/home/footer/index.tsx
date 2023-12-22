@@ -18,10 +18,11 @@ const links = [
         name: 'Docs',
         href: process.env.NEXT_PUBLIC_DOCS_URL ?? '#'
     },
-    {
-        name: 'Privacy Policy',
-        href: '#'
-    },
+    // //Add this back when we need to
+    // {
+    //     name: 'Privacy Policy',
+    //     href: '/privacy-policy'
+    // },
     {
         name: 'Terms of Service',
         href: '/terms-of-service'

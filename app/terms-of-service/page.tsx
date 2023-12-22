@@ -5,7 +5,7 @@ function TermsOfService() {
         <div className="py-32 px-4 flex flex-col gap-y-2 max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold">Terms of Service</h2>
             <p>Last Updated: Dec 22, 2023</p>
-            <p>Welcome to {APP_NAME}. Please read these Terms of Service carefully before using {APP_NAME} operated by us.</p>
+            <p>Welcome to {APP_NAME}. Please read these Terms of Service carefully before using {APP_NAME} {`(the "Service")`} operated by {APP_NAME}{`("us", "we", or "our")`}.</p>
 
             <div className="mt-10 flex flex-col gap-y-5">
                 <div>
