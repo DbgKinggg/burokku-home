@@ -40,7 +40,7 @@ function HomeFooter() {
                         <Link
                             key={index}
                             href={social.href}
-                            className="my-auto"
+                            className="my-auto hover:opacity-80 px-2"
                         >
                             <Image
                                 src={social.icon}
@@ -56,6 +56,7 @@ function HomeFooter() {
                         <Link
                             key={index}
                             href={link.href}
+                            className="hover:opacity-80"
                         >{link.name}</Link>
                     ))
                 }
