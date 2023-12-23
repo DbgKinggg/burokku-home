@@ -55,7 +55,7 @@ function WidgetsLargeScreen() {
             >
                 <TokenSwap showMoveHandle={false} />
             </motion.div>
-            <motion.div className="w-full h-[350px] md:w-72 md:h-[400px] lg:w-96 lg:h-[400px] flex-shrink-0"
+            <motion.div className="w-full h-[450px] md:w-72 flex-shrink-0"
                 style={{
                     translateY: walletActivityY,
                     opacity
