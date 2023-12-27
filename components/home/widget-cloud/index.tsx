@@ -5,7 +5,7 @@ import ClientOnly from "@/components/base/client-only";
 
 function HomeWidgetCloud() {
     return (
-        <div className="min-h-screen pt-12">
+        <section className="min-h-screen pt-12">
             <DottedTitle
                 title="Modular Widgets"
                 description="Personalize your web3 journey with us. Utilize customizable widgets to tailor your dashboard and explore web3 information your way."
@@ -21,7 +21,7 @@ function HomeWidgetCloud() {
                     <SampleWidget />
                 </ClientOnly>
             </div>
-        </div >
+        </section >
     );
 }
 

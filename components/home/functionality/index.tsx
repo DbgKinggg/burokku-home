@@ -51,7 +51,7 @@ const functionalities = [
 
 function HomeFunctionality() {
     return (
-        <div className="min-h-screen flex flex-col mx-auto pb-20 items-center max-w-5xl">
+        <section className="min-h-screen flex flex-col mx-auto pb-20 items-center max-w-5xl">
             <DottedTitle
                 title="Explore Your Web3 Universe"
             />
@@ -69,7 +69,7 @@ function HomeFunctionality() {
                     ))
                 }
             </div>
-        </div>
+        </section>
     );
 }
 
