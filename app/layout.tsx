@@ -10,6 +10,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/base/navbar'
 import HomeFooter from '@/components/home/footer'
 import { APP_NAME } from '@/lib/constants'
+import { WalletProvider } from '@/components/providers/wallet-provider'
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -30,12 +31,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Toaster theme='dark' />
-          <main className="min-h-screen flex flex-col">
-            <Navbar />
-            {children}
-            <HomeFooter />
-          </main>
+          <WalletProvider>
+            <Toaster theme='dark' />
+            <main className="min-h-screen flex flex-col">
+              <Navbar />
+              {children}
+              <HomeFooter />
+            </main>
+          </WalletProvider>
         </ThemeProvider>
         <Analytics />
       </body>
