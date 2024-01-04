@@ -7,6 +7,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { motion } from 'framer-motion'
+import ConnectWalletButton from "./connect-wallet-button";
 
 function MobileMenu() {
     const [showMenu, setShowMenu] = useState(false);
@@ -76,17 +77,20 @@ function MobileMenu() {
                         Docs
                     </Link>
                 </div>
-                <Button
-                    className="mt-auto w-full opacity-50"
-                    size={`lg`}
-                    variant={`secondary`}
-                    onClick={() => {
-                        toast("📢 Coming soon!");
-                    }}
-                >
-                    <RocketIcon className="w-5 h-5 mr-2" />
-                    Launch App
-                </Button>
+                <div className="flex flex-col gap-y-2 mt-auto">
+                    <ConnectWalletButton />
+                    <Button
+                        className="w-full opacity-50"
+                        size={`lg`}
+                        variant={`secondary`}
+                        onClick={() => {
+                            toast("📢 Coming soon!");
+                        }}
+                    >
+                        <RocketIcon className="w-5 h-5 mr-2" />
+                        Launch App
+                    </Button>
+                </div>
             </motion.div>
         </nav>
     );

@@ -51,7 +51,10 @@ function ConnectWalletButton({ connectWalletOnClick }: ConnectWalletButtonProps)
 
                                             openConnectModal();
                                         }}
-                                        type="button" variant={`outline`}>
+                                        type="button"
+                                        variant={`outline`}
+                                        className="w-full"
+                                    >
                                         Connect Wallet
                                     </Button>
                                 );
@@ -72,7 +75,7 @@ function ConnectWalletButton({ connectWalletOnClick }: ConnectWalletButtonProps)
                                     variant={`outline`}
                                     onClick={openAccountModal}
                                     type="button"
-                                    className="font-bold"
+                                    className="font-bold w-full"
                                 >
                                     {
                                         account.ensAvatar && (

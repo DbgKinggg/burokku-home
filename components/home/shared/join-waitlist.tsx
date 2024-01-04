@@ -1,6 +1,6 @@
 "use client"
 import SpotlightButton from "@/components/ui/spotlight-button";
-import { Mail, MessageCircleWarningIcon, Wallet } from "lucide-react";
+import { Mail, Wallet } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import AppApi from "@/lib/apis/app-api";
 import { useRef, useState } from "react";
@@ -24,17 +24,9 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer"
 import { useBreakpoint } from "@/lib/hooks/use-breakpoint";
-import { Button } from "@/components/ui/button";
 import RichButton from "@/components/ui/rich-button";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ConnectWalletButton from "@/components/base/connect-wallet-button";
 import { useAccount } from "wagmi";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 const appApi = new AppApi();
 
