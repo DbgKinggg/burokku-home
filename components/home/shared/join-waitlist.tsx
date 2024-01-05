@@ -210,9 +210,6 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
 
     async function handleJoinWaitlist() {
         if (!validateInputs()) return;
-
-        setHaveShared(true);
-        return;
         setLoading(true);
 
         try {
