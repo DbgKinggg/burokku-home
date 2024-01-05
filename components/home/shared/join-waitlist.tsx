@@ -1,9 +1,9 @@
 "use client"
 import SpotlightButton from "@/components/ui/spotlight-button";
-import { Mail, Wallet } from "lucide-react";
+import { ChevronLeftIcon, Mail, Wallet } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import AppApi from "@/lib/apis/app-api";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import {
     Dialog,
@@ -28,25 +28,35 @@ import RichButton from "@/components/ui/rich-button";
 import ConnectWalletButton from "@/components/base/connect-wallet-button";
 import { useAccount, useWalletClient } from "wagmi";
 import { generateHash, truncateMiddle } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { APP_NAME } from "@/lib/constants";
+import { AnimatePresence, motion } from "framer-motion";
 import { SiwvMessage } from "@/lib/web3/siwv-message";
+import { useReward } from 'react-rewards'
 
 const appApi = new AppApi();
 
 function JoinWaitlist() {
     const { isBelowSm } = useBreakpoint('sm');
+    const [haveShared, setHaveShared] = useState(false);
 
     if (isBelowSm) {
         return (
-            <JoinWaitlistDrawer />
+            <JoinWaitlistDrawer haveShared={haveShared} setHaveShared={setHaveShared} />
         )
     }
 
     return (
-        <JoinWaitlistDialog />
+        <JoinWaitlistDialog haveShared={haveShared} setHaveShared={setHaveShared} />
     );
 }
 
-function JoinWaitlistDialog() {
+type JoinWaitlistDialogProps = {
+    haveShared: boolean;
+    setHaveShared: (value: boolean) => void;
+}
+
+function JoinWaitlistDialog({ haveShared, setHaveShared }: JoinWaitlistDialogProps) {
     const [open, setOpen] = useState(false)
 
     return (
@@ -60,20 +70,57 @@ function JoinWaitlistDialog() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Join Waitlist</DialogTitle>
-                    <DialogDescription>
-                        Connect your wallet to get started!
-                    </DialogDescription>
-                    <JoinWaitlistContent
-                        onClose={() => setOpen(false)}
-                    />
+                    <DialogTitle>
+                        {
+                            haveShared ? (
+                                <Button size="icon" variant={`ghost`}
+                                    onClick={() => setHaveShared(false)}
+                                >
+                                    <ChevronLeftIcon />
+                                </Button>
+                            ) : (
+                                <span>Join Waitlist</span>
+                            )
+                        }
+                    </DialogTitle>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={haveShared ? 'shared' : "not-shared"}
+                            initial={{ x: 10, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: -10, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            {
+                                haveShared ? (
+                                    <JoinWaitlistSuccess />
+                                ) : (
+                                    <>
+                                        <DialogDescription>
+                                            Connect your wallet to get started!
+                                        </DialogDescription>
+                                        <JoinWaitlistContent
+                                            onClose={() => setOpen(false)}
+                                            setHaveShared={setHaveShared}
+                                        />
+                                    </>
+                                )
+                            }
+                        </motion.div>
+                    </AnimatePresence>
                 </DialogHeader>
             </DialogContent>
         </Dialog>
     );
 }
 
-function JoinWaitlistDrawer() {
+type JoinWaitlistDrawerProps = {
+    haveShared: boolean;
+    setHaveShared: (value: boolean) => void;
+}
+
+
+function JoinWaitlistDrawer({ haveShared, setHaveShared }: JoinWaitlistDrawerProps) {
     const buttonRef = useRef<HTMLButtonElement>(null);
 
     function handleClose() {
@@ -94,13 +141,42 @@ function JoinWaitlistDrawer() {
             </DrawerTrigger>
             <DrawerContent className="sm:max-w-[425px]">
                 <DrawerHeader>
-                    <DrawerTitle>Join Waitlist</DrawerTitle>
-                    <DrawerDescription>
-                        Connect your wallet to get started!
-                    </DrawerDescription>
-                    <JoinWaitlistContent
-                        onClose={handleClose}
-                    />
+                    {
+                        haveShared ? (
+                            <Button size="icon" variant={`ghost`}
+                                onClick={() => setHaveShared(false)}
+                            >
+                                <ChevronLeftIcon />
+                            </Button>
+                        ) : (
+                            <DrawerTitle>Join Waitlist</DrawerTitle>
+                        )
+                    }
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={haveShared ? 'shared' : "not-shared"}
+                            initial={{ x: 10, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: -10, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            {
+                                haveShared ? (
+                                    <JoinWaitlistSuccess />
+                                ) : (
+                                    <>
+                                        <DrawerDescription>
+                                            Connect your wallet to get started!
+                                        </DrawerDescription>
+                                        <JoinWaitlistContent
+                                            onClose={handleClose}
+                                            setHaveShared={setHaveShared}
+                                        />
+                                    </>
+                                )
+                            }
+                        </motion.div>
+                    </AnimatePresence>
                 </DrawerHeader>
                 <DrawerFooter>
                     <DrawerClose
@@ -114,9 +190,10 @@ function JoinWaitlistDrawer() {
 
 type JoinWaitlistContentProps = {
     onClose: () => void;
+    setHaveShared: (value: boolean) => void;
 }
 
-function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
+function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProps) {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const { address } = useAccount();
@@ -134,6 +211,8 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
     async function handleJoinWaitlist() {
         if (!validateInputs()) return;
 
+        setHaveShared(true);
+        return;
         setLoading(true);
 
         try {
@@ -163,6 +242,8 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
 
             if (result.success) {
                 toast.success("You have successfully joined the waitlist!");
+
+                setHaveShared(true);
             } else {
                 toast.error(result.message ?? "Something went wrong");
             }
@@ -195,13 +276,6 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
                         <p className="text-muted-foreground text-sm px-2">If you would like to disconnect this wallet, please change it from the main menu</p>
                     )
                 }
-                {/* <Button
-                    variant={`outline`}
-                    size={`sm`}
-                    onClick={onClose}
-                >
-                    Connect Wallet
-                </Button> */}
                 {
                     !address && (
                         <ConnectWalletButton
@@ -231,6 +305,56 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
                 Join
             </RichButton>
         </div>
+    );
+}
+
+function JoinWaitlistSuccess() {
+    const { reward } = useReward('rewardId', 'emoji', {
+        emoji: ['🎉', '✨', '⭐'],
+    });
+
+    useEffect(() => {
+        reward();
+    }, [])
+
+    function handleShareOnTwitter() {
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent("I just joined the waitlist of " + APP_NAME + "! The all-in-one Web3 Dashboard.")}&url=${encodeURIComponent(window.location.href)}&hashtags=${encodeURIComponent(APP_NAME)}`;
+        window.open(url, "_blank");
+    }
+
+    return (
+        <div className="pt-10 flex flex-col gap-y-3">
+            <div className="text-2xl md:text-4xl font-bold text-center bg-clip-text bg-gradient-to-r text-transparent from-zinc-400 to-zinc-100">Thanks for Joining!</div>
+            <p className="text-muted-foreground text-center">
+                You are the most amazing person! Sharing this good news with your friends!
+            </p>
+            <Button
+                variant={`outline`}
+                className="mt-[30px]"
+                onClick={handleShareOnTwitter}
+            >
+                <span id="rewardId" />
+                <XIcon />
+                <span className="ml-2">Share</span>
+            </Button>
+        </div>
+    );
+}
+
+function XIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            fill="none"
+            viewBox="0 0 1200 1227"
+        >
+            <path
+                fill="#fff"
+                d="M714.163 519.284L1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026zM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026z"
+            ></path>
+        </svg>
     );
 }
 

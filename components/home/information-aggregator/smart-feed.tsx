@@ -102,7 +102,7 @@ function SmartFeed() {
             {
                 ...lastItem,
                 // generate new hash so that the animation would work
-                id: generateHash(`${lastItem.id}-`)
+                id: generateHash(8, `${lastItem.id}-`)
             },
             ...allExceptLastItem,
         ])
