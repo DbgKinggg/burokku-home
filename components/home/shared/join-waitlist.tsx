@@ -26,8 +26,9 @@ import {
 import { useBreakpoint } from "@/lib/hooks/use-breakpoint";
 import RichButton from "@/components/ui/rich-button";
 import ConnectWalletButton from "@/components/base/connect-wallet-button";
-import { useAccount } from "wagmi";
-import { truncateMiddle } from "@/lib/utils";
+import { useAccount, useSignMessage, useWalletClient } from "wagmi";
+import { generateHash, truncateMiddle } from "@/lib/utils";
+import { SiwvMessage } from "@/lib/web3/siwv-message";
 
 const appApi = new AppApi();
 
@@ -119,17 +120,58 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const { address } = useAccount();
+    const walletClient = useWalletClient();
+
+    function validateInputs() {
+        if (address === undefined) {
+            toast.error("Please connect your wallet");
+            return false;
+        }
+
+        return true;
+    }
 
     async function handleJoinWaitlist() {
-        setLoading(true);
-        const result = await appApi.subscribeEmail(email);
+        if (!validateInputs()) return;
 
-        if (result.success) {
-            toast.success("You have successfully joined the waitlist!");
-        } else {
-            toast.error(result.message ?? "Something went wrong");
+        setLoading(true);
+
+        try {
+            const addressStr = address as string;
+            // sign a message first
+            const siwv = new SiwvMessage({
+                domain: window.location.host,
+                address: addressStr,
+                statement: "I'm joining the waitlist!",
+                uri: window.location.origin,
+                version: "1",
+                chainId: walletClient.data?.chain.id || 1,
+                nonce: generateHash(10),
+            });
+            const message = siwv.prepareMessage();
+
+            const signedMessage = await walletClient.data?.signMessage({
+                message,
+            });
+
+            const result = await appApi.subscribeEmail(
+                addressStr,
+                siwv,
+                signedMessage as string,
+                email
+            );
+
+            if (result.success) {
+                toast.success("You have successfully joined the waitlist!");
+            } else {
+                toast.error(result.message ?? "Something went wrong");
+            }
+        } catch (error) {
+            const err = error as Error;
+            toast.error(err.message ?? "Something went wrong");
+        } finally {
+            setLoading(false);
         }
-        setLoading(false);
     }
 
     return (

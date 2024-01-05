@@ -1,8 +1,4 @@
 import Block3D from "@/components/home/hero/3DBlock";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import SpotlightButton from "@/components/ui/spotlight-button";
-import { Mail } from "lucide-react";
 import JoinWaitlist from "../shared/join-waitlist";
 import ClientOnly from "@/components/base/client-only";
 

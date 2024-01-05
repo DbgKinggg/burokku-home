@@ -33,6 +33,7 @@
     "sonner": "^1.2.4",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
+    "valid-url": "^1.0.9",
     "vaul": "^0.8.0",
     "viem": "^1.21.4",
     "wagmi": "^1.4.13"

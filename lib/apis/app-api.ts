@@ -1,4 +1,5 @@
 import axios, {AxiosInstance} from "axios";
+import {SiwvMessage} from "../web3/siwv-message";
 
 type SubscribeEmailResponse = {
   success: boolean;
@@ -14,7 +15,12 @@ class AppApi {
     });
   }
 
-  public async subscribeEmail(email: string): Promise<{
+  public async subscribeEmail(
+    address: string,
+    message: SiwvMessage,
+    signedNonce: string,
+    email: string
+  ): Promise<{
     success: boolean;
     message: string;
     error?: string;
@@ -22,7 +28,12 @@ class AppApi {
     try {
       const response = await this.client.post<SubscribeEmailResponse>(
         "/home/subscribe",
-        {email}
+        {
+          email,
+          address,
+          message: JSON.stringify(message),
+          signedNonce,
+        }
       );
 
       return response.data;

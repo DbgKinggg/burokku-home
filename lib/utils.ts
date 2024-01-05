@@ -5,10 +5,12 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-function generateHash(prefix = "") {
+function generateHash(length = 8, prefix = "") {
   return (
-    (prefix === undefined ? "" : `${prefix}-`) +
-    `${Math.random().toString(36).substring(2, 9)}`
+    (prefix === undefined || prefix === "" ? "" : `${prefix}-`) +
+    `${Math.random()
+      .toString(36)
+      .substring(2, 2 + length)}`
   );
 }
 
