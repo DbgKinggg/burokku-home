@@ -17,7 +17,6 @@ import {
 } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
-import { useTheme } from 'next-themes';
 import { APP_NAME } from '@/lib/constants';
 
 const { chains, publicClient } = configureChains(
@@ -45,13 +44,11 @@ interface WalletProviderProps {
 }
 
 function WalletProvider({ children }: WalletProviderProps) {
-    const { resolvedTheme } = useTheme();
-
     return (
         <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains}
                 modalSize='compact'
-                theme={resolvedTheme === 'dark' ? midnightTheme() : undefined}
+                theme={midnightTheme()}
             >
                 {children}
             </RainbowKitProvider>
