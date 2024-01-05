@@ -6,6 +6,13 @@ type SubscribeEmailResponse = {
   message: string;
 };
 
+type SubscribeEmailPayload = {
+  address: string;
+  message: string;
+  signature: string;
+  email?: string;
+};
+
 class AppApi {
   private client: AxiosInstance;
 
@@ -18,7 +25,7 @@ class AppApi {
   public async subscribeEmail(
     address: string,
     message: SiwvMessage,
-    signedNonce: string,
+    signature: string,
     email: string
   ): Promise<{
     success: boolean;
@@ -26,14 +33,19 @@ class AppApi {
     error?: string;
   }> {
     try {
+      const payload: SubscribeEmailPayload = {
+        address,
+        message: JSON.stringify(message),
+        signature,
+      };
+
+      if (email && email !== "") {
+        payload["email"] = email;
+      }
+
       const response = await this.client.post<SubscribeEmailResponse>(
         "/home/subscribe",
-        {
-          email,
-          address,
-          message: JSON.stringify(message),
-          signedNonce,
-        }
+        payload
       );
 
       return response.data;

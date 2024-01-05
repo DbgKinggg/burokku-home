@@ -26,7 +26,7 @@ import {
 import { useBreakpoint } from "@/lib/hooks/use-breakpoint";
 import RichButton from "@/components/ui/rich-button";
 import ConnectWalletButton from "@/components/base/connect-wallet-button";
-import { useAccount, useSignMessage, useWalletClient } from "wagmi";
+import { useAccount, useWalletClient } from "wagmi";
 import { generateHash, truncateMiddle } from "@/lib/utils";
 import { SiwvMessage } from "@/lib/web3/siwv-message";
 
@@ -150,14 +150,14 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
             });
             const message = siwv.prepareMessage();
 
-            const signedMessage = await walletClient.data?.signMessage({
+            const signature = await walletClient.data?.signMessage({
                 message,
             });
 
             const result = await appApi.subscribeEmail(
                 addressStr,
                 siwv,
-                signedMessage as string,
+                signature as string,
                 email
             );
 
