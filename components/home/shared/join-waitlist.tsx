@@ -323,7 +323,7 @@ function JoinWaitlistSuccess() {
         <div className="pt-10 flex flex-col gap-y-3">
             <div className="text-2xl md:text-4xl font-bold text-center bg-clip-text bg-gradient-to-r text-transparent from-zinc-400 to-zinc-100">Thanks for Joining!</div>
             <p className="text-muted-foreground text-center">
-                You are the most amazing person! Sharing this good news with your friends!
+                You are the most amazing person! Share this good news with your friends
             </p>
             <Button
                 variant={`outline`}
