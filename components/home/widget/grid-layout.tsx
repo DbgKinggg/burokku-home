@@ -153,7 +153,7 @@ function CustomGridLayoutContent({ rect }: { rect: DOMRect | null }) {
         }
 
         const dragData = JSON.parse(dragDataRaw) as WidgetDragData;
-        const newKey = generateHash(dragData.widgetType);
+        const newKey = generateHash(8, dragData.widgetType);
         const lastLayoutItem = layout.pop();
         const newLayout: ReactGridLayout.Layout[] = [
             ...layout,

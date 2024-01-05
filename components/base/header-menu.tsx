@@ -101,13 +101,25 @@ function HeaderMenu() {
                             <div
                                 className={clsx(
                                     { hidden: !ready },
-                                    "absolute inset-y-0 h-full w-[var(--size)] translate-x-[var(--position)] rounded-full bg-white/5 transition-[width,transform] duration-[--duration]",
-                                )}></div>
+                                    "absolute inset-y-0 h-full rounded-full bg-white/5 transition-[width,transform]",
+                                )}
+                                style={{
+                                    width: size,
+                                    transform: `translateX(${position})`,
+                                    animationDuration: duration,
+                                }}
+                            ></div>
                             <div
                                 className={clsx(
                                     { hidden: !ready },
-                                    "absolute bottom-0 h-1/3 w-[var(--size)] translate-x-[var(--position)] rounded-full bg-white opacity-20 blur-md transition-[width,transform] duration-[--duration]",
-                                )}></div>
+                                    "absolute bottom-0 h-1/3 rounded-full bg-white opacity-20 blur-md transition-[width,transform]",
+                                )}
+                                style={{
+                                    width: size,
+                                    transform: `translateX(${position})`,
+                                    animationDuration: duration,
+                                }}
+                            ></div>
 
                             <Navigation.List as="ul" className="relative flex items-center gap-3">
                                 {items.map((item, index) => (

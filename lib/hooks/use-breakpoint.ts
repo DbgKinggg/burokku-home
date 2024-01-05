@@ -18,7 +18,7 @@
  */
 import {useMediaQuery} from "react-responsive";
 import resolveConfig from "tailwindcss/resolveConfig";
-import {Config, ScreensConfig} from "tailwindcss/types/config";
+import {Config} from "tailwindcss/types/config";
 
 import tailwindConfig from "@/tailwind.config"; // Your tailwind config
 
