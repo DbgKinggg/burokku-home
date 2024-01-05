@@ -7,11 +7,11 @@ function HomeFooterCTA() {
                 <p className="text-5xl md:text-8xl bg-gradient-to-b from-white/50 to-white bg-clip-text text-transparent">
                     {`Can't wait to try it out?`}
                 </p>
-                <p className="text-4xl md:text-6xl mt-2">
+                <p className="text-2xl md:text-4xl mt-2">
                     {`Join waitlist and we will notify you when we launch!`}
                 </p>
             </div>
-            <div className="mt-12">
+            <div className="mt-12 flex justify-center">
                 <JoinWaitlist />
             </div>
         </div>

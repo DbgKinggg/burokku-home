@@ -1,6 +1,7 @@
 import { As, ComponentPropsWithAs } from "@/lib/types/component-props";
 import { cn } from "@/lib/utils";
 import { MoreHorizontalIcon } from "lucide-react";
+import { forwardRef } from "react";
 
 type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 type SpotlightButtonProps = ButtonElementProps & {
@@ -8,9 +9,12 @@ type SpotlightButtonProps = ButtonElementProps & {
     loadingText?: React.ReactNode | string;
 }
 
-export function SpotlightButton<Component extends As>(
+export const SpotlightButton = forwardRef<HTMLButtonElement, SpotlightButtonProps>(SpotlightButtonComponent);
+
+export function SpotlightButtonComponent<Component extends As>(
     { as, children, className, loadingText, loading = false, ...props }
-        : ComponentPropsWithAs<Component, SpotlightButtonProps>
+        : ComponentPropsWithAs<Component, SpotlightButtonProps>,
+    _ref: React.ForwardedRef<HTMLButtonElement>
 ) {
     const Component = as ?? "button";
 

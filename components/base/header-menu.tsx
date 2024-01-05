@@ -84,8 +84,14 @@ function HeaderMenu() {
                         <div
                             className={clsx(
                                 { hidden: !ready },
-                                "absolute bottom-0 h-1/2 w-[var(--size)] translate-x-[var(--position)] bg-white/75 blur-xl transition-[width,transform] duration-[--duration]",
-                            )}></div>
+                                "absolute bottom-0 h-1/2 bg-white/75 blur-xl transition-[width,transform]",
+                            )}
+                            style={{
+                                width: size,
+                                transform: `translateX(${position})`,
+                                animationDuration: duration,
+                            }}
+                        ></div>
 
                         {/* main panel background */}
                         <div className="absolute inset-0 rounded-full bg-neutral-950/70 backdrop-blur-md"></div>
