@@ -81,7 +81,6 @@ function MobileMenu() {
                     <ConnectWalletButton />
                     <Button
                         className="w-full opacity-50"
-                        size={`lg`}
                         variant={`secondary`}
                         onClick={() => {
                             toast("📢 Coming soon!");

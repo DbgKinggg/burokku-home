@@ -27,6 +27,7 @@ import { useBreakpoint } from "@/lib/hooks/use-breakpoint";
 import RichButton from "@/components/ui/rich-button";
 import ConnectWalletButton from "@/components/base/connect-wallet-button";
 import { useAccount } from "wagmi";
+import { truncateMiddle } from "@/lib/utils";
 
 const appApi = new AppApi();
 
@@ -139,16 +140,17 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
                         className="absolute left-3 text-muted-foreground w-5 h-5"
                     />
                     <Input
-                        placeholder={address ? address : `Please connect your wallet`}
+                        placeholder={address ? truncateMiddle(address) : `Please connect your wallet`}
                         type="text"
-                        className="w-full pl-10"
+                        className="w-full pl-10 pr-6"
                         onChange={(e) => setEmail(e.target.value)}
                         readOnly
                     />
+                    <span className="absolute right-3 top-1/2 -translate-y-1/2">*</span>
                 </div>
                 {
                     address && (
-                        <p className="text-muted-foreground text-sm px-2">If you would like to switch wallet, please change it from the main menu</p>
+                        <p className="text-muted-foreground text-sm px-2">If you would like to disconnect this wallet, please change it from the main menu</p>
                     )
                 }
                 {/* <Button
@@ -171,7 +173,7 @@ function JoinWaitlistContent({ onClose }: JoinWaitlistContentProps) {
                     className="absolute left-3 text-muted-foreground w-5 h-5"
                 />
                 <Input
-                    placeholder="Enter your email"
+                    placeholder="Enter your email optionally"
                     type="email"
                     className="w-full pl-10"
                     value={email}

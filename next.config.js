@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "**",
+                port: "",
+                pathname: "**",
+            },
+        ],
+    },
     webpack: (config) => {
         // eslint-disable-next-line
         config.externals.push("pino-pretty", "lokijs", "encoding");
