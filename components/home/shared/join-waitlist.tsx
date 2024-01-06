@@ -197,7 +197,7 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const { address } = useAccount();
-    const walletClient = useWalletClient();
+    const { data: walletClient } = useWalletClient();
 
     function validateInputs() {
         if (address === undefined) {
@@ -208,12 +208,11 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
         return true;
     }
 
-    async function handleJoinWaitlist() {
+    async function handleJoinWaitlist(addressStr: string) {
         if (!validateInputs()) return;
         setLoading(true);
 
         try {
-            const addressStr = address as string;
             // sign a message first
             const siwv = new SiwvMessage({
                 domain: window.location.host,
@@ -221,12 +220,12 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
                 statement: "I'm joining the waitlist!",
                 uri: window.location.origin,
                 version: "1",
-                chainId: walletClient.data?.chain.id || 1,
+                chainId: walletClient?.chain.id || 1,
                 nonce: generateHash(10),
             });
             const message = siwv.prepareMessage();
 
-            const signature = await walletClient.data?.signMessage({
+            const signature = await walletClient?.signMessage({
                 message,
             });
 
@@ -297,7 +296,7 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
             <RichButton
                 variant="secondary"
                 isLoading={loading}
-                onClick={handleJoinWaitlist}
+                onClick={() => handleJoinWaitlist(address as string)}
             >
                 Join
             </RichButton>
