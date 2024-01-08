@@ -33,7 +33,15 @@ const links = [
 function HomeFooter() {
     return (
         <footer className="mt-auto flex flex-col-reverse gap-y-4 md:flex-row w-full py-4 px-8 md:justify-between text-muted-foreground">
-            <span>© 2024 {APP_NAME}</span>
+            <div className="flex gap-x-2 justify-center">
+                <Image
+                    src="/images/icons/icon-white.svg"
+                    alt={APP_NAME}
+                    width={25}
+                    height={25}
+                />
+                <span>© 2024 {APP_NAME}</span>
+            </div>
             <div className="flex mt-6 md:mt-0 flex-col gap-y-4 md:flex-row gap-x-5">
                 {
                     socials.map((social, index) => (

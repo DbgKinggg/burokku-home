@@ -1,10 +1,14 @@
 import { APP_NAME } from "@/lib/constants";
+import Image from "next/image";
 
 function Logo() {
     return (
-        <div className="font-bold text-xl z-50">
-            {APP_NAME}
-        </div>
+        <Image
+            src="/images/icons/icon-full-white.svg"
+            alt={APP_NAME}
+            width={126}
+            height={30}
+        />
     )
 }
 
