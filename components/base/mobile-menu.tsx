@@ -27,7 +27,7 @@ function MobileMenu() {
             "fixed z-50 left-0 top-0 flex w-full flex-col items-center bg-root md:hidden",
             showMenu ? "h-full bg-background" : ""
         )}>
-            <div className="flex w-full items-center px-4 py-4">
+            <div className="flex w-full items-center px-4 py-4 backdrop-blur bg-neutral-950/20">
                 <div className="flex-auto">
                     <Link
                         className="outline-none transition duration-150 ease-in-out focus-visible:ring-2 focus-visible:ring-slate-7"
