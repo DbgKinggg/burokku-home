@@ -14,13 +14,17 @@ import {
     arbitrum,
     base,
     zora,
+    linea,
+    avalanche,
+    opBNB,
+    scroll
 } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { APP_NAME } from '@/lib/constants';
 
 const { chains, publicClient } = configureChains(
-    [mainnet, polygon, optimism, arbitrum, base, zora],
+    [mainnet, polygon, optimism, arbitrum, base, zora, linea, avalanche, opBNB, scroll],
     [
         alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
         publicProvider()
