@@ -14,7 +14,7 @@ import { WalletProvider } from '@/components/providers/wallet-provider'
 
 export const metadata: Metadata = {
   title: APP_NAME,
-  description: `${APP_NAME}, the all-in-one Web3 dashboard.`,
+  description: `The all-in-one Web3 dashboard.`,
 }
 
 export default function RootLayout({
