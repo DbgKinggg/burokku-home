@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
     images: [
       {
-        url: 'https://burokku.one/imgaes/open-graph.png',
+        url: 'https://burokku.one/images/open-graph.png',
         width: 2400,
         height: 1260,
       }
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description: APP_DESCRIPTION,
     images: [
       {
-        url: 'https://burokku.one/imgaes/open-graph.png',
+        url: 'https://burokku.one/images/open-graph.png',
         width: 2400,
         height: 1260,
       }
