@@ -5,8 +5,9 @@ import { APP_NAME } from "@/lib/constants";
 const socials = [
     {
         name: 'Twitter',
-        href: '#',
+        href: 'https://twitter.com/burokku_one',
         icon: '/images/social-media/twitter-x.svg',
+        label: "X formerly known as Twitter"
     }
 ];
 
@@ -48,6 +49,7 @@ function HomeFooter() {
                         <Link
                             key={index}
                             href={social.href}
+                            aria-label={social.label}
                             className="my-auto hover:opacity-80 px-0 md:px-2"
                         >
                             <Image

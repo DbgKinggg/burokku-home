@@ -1,6 +1,6 @@
 "use client"
 import { MenuIcon, Rocket, RocketIcon, XIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { useEffect, useState } from "react";
 import Logo from "./logo";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { motion } from 'framer-motion'
 import ConnectWalletButton from "./connect-wallet-button";
+import Image from "next/image";
 
 function MobileMenu() {
     const [showMenu, setShowMenu] = useState(false);
@@ -77,18 +78,38 @@ function MobileMenu() {
                         Docs
                     </Link>
                 </div>
-                <div className="flex flex-col gap-y-2 mt-auto">
-                    <ConnectWalletButton />
-                    <Button
-                        className="w-full opacity-50"
-                        variant={`secondary`}
-                        onClick={() => {
-                            toast("📢 Coming soon!");
-                        }}
-                    >
-                        <RocketIcon className="w-5 h-5 mr-2" />
-                        Launch App
-                    </Button>
+                <div className="mt-auto flex flex-col gap-y-2">
+                    <div className="flex gap-x-2 justify-end">
+                        <Link
+                            href={`https://twitter.com/burokku_one`}
+                            target="_blank"
+                            aria-label={`X formerly known as Twitter`}
+                            className={buttonVariants({
+                                variant: 'outline',
+                                size: 'icon'
+                            })}
+                        >
+                            <Image
+                                src={`/images/social-media/twitter-x.svg`}
+                                alt={`X formerly known as Twitter`}
+                                width={12}
+                                height={12}
+                            />
+                        </Link>
+                    </div>
+                    <div className="flex flex-col gap-y-2">
+                        <ConnectWalletButton />
+                        <Button
+                            className="w-full opacity-50"
+                            variant={`secondary`}
+                            onClick={() => {
+                                toast("📢 Coming soon!");
+                            }}
+                        >
+                            <RocketIcon className="w-5 h-5 mr-2" />
+                            Launch App
+                        </Button>
+                    </div>
                 </div>
             </motion.div>
         </nav>
