@@ -33,6 +33,7 @@ import { APP_NAME } from "@/lib/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { SiwvMessage } from "@/lib/web3/siwv-message";
 import { useReward } from 'react-rewards'
+import { useDisconnect } from "wagmi";
 
 const appApi = new AppApi();
 
@@ -198,6 +199,7 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
     const [loading, setLoading] = useState(false);
     const { address } = useAccount();
     const { data: walletClient } = useWalletClient();
+    const { disconnect } = useDisconnect();
 
     function validateInputs() {
         if (address === undefined) {
@@ -269,7 +271,15 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
                 </div>
                 {
                     address && (
-                        <p className="text-muted-foreground text-sm px-2">If you would like to disconnect this wallet, please change it from the main menu</p>
+                        <>
+                            <p className="text-muted-foreground text-sm px-2">If you would like to switch wallet, please change it from the wallet directly</p>
+                            <Button
+                                variant={`outline`}
+                                onClick={() => disconnect()}
+                            >
+                                Disconnect
+                            </Button>
+                        </>
                     )
                 }
                 {
