@@ -4,7 +4,6 @@ import LaunchBtn from "./launch-btn";
 import Logo from "./logo";
 import ConnectWalletButton from "./connect-wallet-button";
 import Link from "next/link";
-import { Button } from "../ui/button";
 import Image from "next/image";
 import { buttonVariants } from "../ui/button";
 
