@@ -4,7 +4,6 @@ import { track } from "@vercel/analytics/react";
 import clsx from "clsx";
 import { motion } from 'framer-motion'
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 type MenuItemLink = {
     name: string;
@@ -22,22 +21,18 @@ type MenuItemButton = {
 };
 
 type MenuItem = MenuItemLink | MenuItemButton;
-
-const MotionNavigation = motion(Navigation);
 const openLink = (url: string, newTab: boolean = false) => {
     window.open(url, newTab ? '_blank' : "_self")?.focus()
 };
 
 function HeaderMenu() {
-    const router = useRouter();
-
     const items: MenuItem[] = [
         {
             name: "Home",
             type: "link",
             href: "/",
             newTab: false,
-            onActivated: () => router.push("/"),
+            onActivated: () => { }
         },
         {
             name: "Blog",
