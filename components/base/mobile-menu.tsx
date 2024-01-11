@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { motion } from 'framer-motion'
 import ConnectWalletButton from "./connect-wallet-button";
 import Image from "next/image";
+import { track } from "@vercel/analytics/react";
 
 function MobileMenu() {
     const [showMenu, setShowMenu] = useState(false);
@@ -68,12 +69,14 @@ function MobileMenu() {
                     <Link
                         className="text-md block w-full border-b border-slate-6 py-4 font-semibold text-slate-11 transition duration-200 ease-in-out last:border-none hover:text-slate-12"
                         href={process.env.NEXT_PUBLIC_BLOG_URL ?? '#'}
+                        onClick={() => track("BlogLinkClicked", { position: "header", device: "mobile" })}
                     >
                         Blog
                     </Link>
                     <Link
                         className="text-md block w-full border-b border-slate-6 py-4 font-semibold text-slate-11 transition duration-200 ease-in-out last:border-none hover:text-slate-12"
                         href={process.env.NEXT_PUBLIC_DOCS_URL ?? '#'}
+                        onClick={() => track("DocsLinkClicked", { position: "header", device: "mobile" })}
                     >
                         Docs
                     </Link>
@@ -88,6 +91,7 @@ function MobileMenu() {
                                 variant: 'outline',
                                 size: 'icon'
                             })}
+                            onClick={() => track("TwitterButtonClicked", { position: "header", device: "mobile" })}
                         >
                             <Image
                                 src={`/images/social-media/twitter-x.svg`}

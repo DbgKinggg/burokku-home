@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { track } from "@vercel/analytics/react";
 import Image from "next/image";
 
 type ConnectWalletButtonProps = {
@@ -50,6 +51,7 @@ function ConnectWalletButton({ connectWalletOnClick }: ConnectWalletButtonProps)
                                             }
 
                                             openConnectModal();
+                                            track("ConnectWalletButtonClicked")
                                         }}
                                         type="button"
                                         variant={`outline`}
@@ -73,7 +75,10 @@ function ConnectWalletButton({ connectWalletOnClick }: ConnectWalletButtonProps)
                             return (
                                 <Button
                                     variant={`outline`}
-                                    onClick={openAccountModal}
+                                    onClick={() => {
+                                        openAccountModal();
+                                        track("ConnectedWalletButtonClicked")
+                                    }}
                                     type="button"
                                     className="font-bold w-full"
                                 >

@@ -15,6 +15,7 @@ import { WalletProvider } from '@/components/providers/wallet-provider'
 export const metadata: Metadata = {
   title: APP_NAME,
   description: APP_DESCRIPTION,
+  metadataBase: new URL('https://burokku.one/'),
   openGraph: {
     title: APP_NAME,
     description: APP_DESCRIPTION,

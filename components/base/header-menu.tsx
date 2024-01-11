@@ -1,5 +1,6 @@
 "use client"
 import { Navigation } from "@/components/ui/navigation"
+import { track } from "@vercel/analytics/react";
 import clsx from "clsx";
 import { motion } from 'framer-motion'
 import Link from "next/link";
@@ -46,7 +47,8 @@ function HeaderMenu() {
             onActivated: () => {
                 if (!process.env.NEXT_PUBLIC_BLOG_URL) return;
 
-                openLink(process.env.NEXT_PUBLIC_BLOG_URL)
+                openLink(process.env.NEXT_PUBLIC_BLOG_URL);
+                track("BlogLinkClicked", { position: "header", device: "desktop" });
             },
         },
         {
@@ -57,7 +59,8 @@ function HeaderMenu() {
             onActivated: () => {
                 if (!process.env.NEXT_PUBLIC_DOCS_URL) return;
 
-                openLink(process.env.NEXT_PUBLIC_DOCS_URL)
+                openLink(process.env.NEXT_PUBLIC_DOCS_URL);
+                track("DocsLinkClicked", { position: "header", device: "desktop" });
             },
         },
     ]

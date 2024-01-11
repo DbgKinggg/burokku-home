@@ -34,6 +34,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SiwvMessage } from "@/lib/web3/siwv-message";
 import { useReward } from 'react-rewards'
 import { useDisconnect } from "wagmi";
+import { track } from "@vercel/analytics/react";
 
 const appApi = new AppApi();
 
@@ -63,7 +64,9 @@ function JoinWaitlistDialog({ haveShared, setHaveShared }: JoinWaitlistDialogPro
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <SpotlightButton className="mt-3">
+                <SpotlightButton className="mt-3"
+                    onClick={() => track("JoinWaitlistButtonClicked", { source: "dialog" })}
+                >
                     <span className="relative bg-gradient-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200 [font-variation-settings:'wdth'_100] group-hover:font-extrabold group-hover:[font-variation-settings:'wdth'_125]">
                         Join Waitlist
                     </span>
@@ -134,7 +137,9 @@ function JoinWaitlistDrawer({ haveShared, setHaveShared }: JoinWaitlistDrawerPro
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <SpotlightButton className="mt-3">
+                <SpotlightButton className="mt-3"
+                    onClick={() => track("JoinWaitlistButtonClicked", { source: "drawer" })}
+                >
                     <span className="relative bg-gradient-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200 [font-variation-settings:'wdth'_100] group-hover:font-extrabold group-hover:[font-variation-settings:'wdth'_125]">
                         Join Waitlist
                     </span>
@@ -215,6 +220,8 @@ function JoinWaitlistContent({ onClose, setHaveShared }: JoinWaitlistContentProp
         setLoading(true);
 
         try {
+            track("SaveJoinWaitlistButtonClicked", { address: addressStr, email });
+
             // sign a message first
             const siwv = new SiwvMessage({
                 domain: window.location.host,

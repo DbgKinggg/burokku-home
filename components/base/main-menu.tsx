@@ -6,6 +6,7 @@ import ConnectWalletButton from "./connect-wallet-button";
 import Link from "next/link";
 import Image from "next/image";
 import { buttonVariants } from "../ui/button";
+import { track } from "@vercel/analytics/react";
 
 function MainMenu() {
     return (
@@ -25,6 +26,7 @@ function MainMenu() {
                         variant: 'outline',
                         size: 'icon'
                     })}
+                    onClick={() => track("TwitterButtonClicked", { position: "header", device: "desktop" })}
                 >
                     <Image
                         src={`/images/social-media/twitter-x.svg`}

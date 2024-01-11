@@ -8,6 +8,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { toast } from "sonner";
+import { track } from "@vercel/analytics/react";
 
 function LaunchBtn() {
     return (
@@ -20,6 +21,7 @@ function LaunchBtn() {
                         variant={`secondary`}
                         onClick={() => {
                             toast("📢 Coming soon!");
+                            track("LaunchAppClicked");
                         }}
                     >
                         <RocketIcon className="w-5 h-5 mr-2" />

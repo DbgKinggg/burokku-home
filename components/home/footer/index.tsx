@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { APP_NAME } from "@/lib/constants";
+import { track } from "@vercel/analytics/react";
 
 const socials = [
     {
@@ -51,6 +52,7 @@ function HomeFooter() {
                             href={social.href}
                             aria-label={social.label}
                             className="my-auto hover:opacity-80 px-0 md:px-2"
+                        // onClick={() => track("SocialMediaLinkClicked", { position: "footer", social: social.name })}
                         >
                             <Image
                                 src={social.icon}

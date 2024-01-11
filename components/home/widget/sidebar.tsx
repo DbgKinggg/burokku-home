@@ -2,6 +2,7 @@
 import { ArrowLeftRight, BrainCogIcon, CandlestickChart, ChevronRightIcon, CoinsIcon, GemIcon, RssIcon, SmileIcon } from "lucide-react";
 import { WidgetType } from "./constants";
 import { Button } from "@/components/ui/button";
+import { track } from "@vercel/analytics/react";
 
 function Sidebar() {
     return (
@@ -40,6 +41,12 @@ function DraggableButton({ name, icon, type }: DraggableButtonProps) {
                 e.dataTransfer.setData("text/plain", "")
 
                 e.dataTransfer.setData('dragData', JSON.stringify({ widgetType: type }));
+            }}
+            onDragEnd={() => {
+                track("WidgetDroppped", {
+                    name,
+                    type,
+                })
             }}
         >
             <span className="md:mr-2">{icon}</span>
