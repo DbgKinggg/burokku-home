@@ -331,7 +331,7 @@ function JoinWaitlistSuccess() {
     }, [])
 
     function handleShareOnTwitter() {
-        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent("I just joined the waitlist of " + APP_NAME + "! The all-in-one Web3 Dashboard.")}&url=${encodeURIComponent(window.location.href)}&hashtags=${encodeURIComponent(APP_NAME)}`;
+        const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent("I just joined the waitlist of " + APP_NAME + "! @burokku_one The all-in-one Web3 Dashboard.")}&url=${encodeURIComponent(window.location.href)}&hashtags=${encodeURIComponent(APP_NAME)}`;
         window.open(url, "_blank");
     }
 
